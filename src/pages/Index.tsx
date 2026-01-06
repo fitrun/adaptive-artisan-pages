@@ -1,12 +1,307 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import heroImage from "@/assets/hero-landing.jpg";
+
+const navLinks = [
+  { label: "Продукти", href: "#" },
+  { label: "Для Бізнесу", href: "#" },
+  { label: "Магазин", href: "#" },
+  { label: "Політика конфіденційності", href: "#" },
+];
+
+const menuLinks = [
+  { label: "Продукти", href: "#" },
+  { label: "Магазин", href: "#" },
+  { label: "Про нас", href: "#" },
+  { label: "Для Бізнесу", href: "#" },
+  { label: "Блог", href: "#" },
+  { label: "Партнерська програма", href: "#" },
+  { label: "Кар'єра", href: "#" },
+  { label: "Контакти", href: "#" },
+];
+
+const footerLinks = [
+  { label: "Умови надання послуг", href: "#" },
+  { label: "Умови підписки", href: "#" },
+  { label: "Політика конфіденційності", href: "#" },
+  { label: "Політика відшкодування", href: "#" },
+  { label: "e-Privacy Settings", href: "#" },
+];
+
+const slides = [
+  {
+    id: 1,
+    title: "Програма пілатесу біля стіни: низькоінтенсивні тренування для початківців",
+    image: heroImage,
+  },
+  {
+    id: 2,
+    title: "Йога для початківців: базові вправи",
+    image: heroImage,
+  },
+  {
+    id: 3,
+    title: "Ранкова зарядка: енергія на весь день",
+    image: heroImage,
+  },
+  {
+    id: 4,
+    title: "Медитація: знайди свій спокій",
+    image: heroImage,
+  },
+];
 
 const Index = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(1);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="relative h-screen w-full overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${slides[activeSlide].image})` }}
+      />
+
+      {/* Header */}
+      <header className="absolute top-0 left-0 right-0 z-20 px-6 py-6 md:px-10 lg:px-12">
+        <nav className="flex items-center justify-between">
+          {/* Logo */}
+          <Link to="/" className="text-xl md:text-2xl font-bold text-primary-foreground">
+            BetterMe
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a key={link.label} href={link.href} className="nav-link">
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          {/* Right Side Actions */}
+          <div className="flex items-center gap-3">
+            {/* Login Button - Desktop/Tablet */}
+            <Link
+              to="/login"
+              className="hidden md:flex items-center justify-center rounded-full border border-primary-foreground/30 bg-transparent px-8 py-3 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary-foreground/10"
+            >
+              Увійти
+            </Link>
+
+            {/* Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(true)}
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-primary-foreground/30 bg-transparent text-primary-foreground transition-all duration-200 hover:bg-primary-foreground/10"
+              aria-label="Open menu"
+            >
+              <Menu className="h-5 w-5" />
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      {/* Main Content */}
+      <main className="absolute bottom-0 left-0 right-0 z-10 p-6 md:p-10 lg:p-12">
+        {/* Mobile Layout */}
+        <div className="lg:hidden">
+          {/* Pagination Dots - Mobile (centered above content) */}
+          <div className="flex justify-center gap-2 mb-6">
+            {slides.map((slide, index) => (
+              <button
+                key={slide.id}
+                onClick={() => setActiveSlide(index)}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-200 ${
+                  index === activeSlide
+                    ? "bg-primary-foreground"
+                    : "bg-primary-foreground/40"
+                }`}
+                aria-label={`Slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Content Container */}
+        <div className="lg:flex lg:items-end lg:justify-between">
+          {/* Text Content */}
+          <div className="max-w-2xl animate-slide-up">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-primary-foreground leading-tight mb-6 lg:mb-8">
+              {slides[activeSlide].title}
+            </h1>
+
+            {/* CTA Button */}
+            <button className="rounded-full bg-card px-8 py-4 text-sm font-medium text-foreground transition-all duration-200 hover:bg-card/90">
+              Завантажити
+            </button>
+          </div>
+
+          {/* Desktop Pagination */}
+          <div className="hidden lg:flex items-center gap-3">
+            {slides.map((slide, index) => (
+              <button
+                key={slide.id}
+                onClick={() => setActiveSlide(index)}
+                className={`pagination-dot ${
+                  index === activeSlide
+                    ? "pagination-dot-active"
+                    : "pagination-dot-inactive"
+                }`}
+                aria-label={`Slide ${index + 1}`}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
+        </div>
+      </main>
+
+      {/* Mobile Menu Overlay */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-50 animate-fade-in">
+          {/* Desktop/Tablet: Split Layout */}
+          <div className="hidden md:flex h-full">
+            {/* Left Side - Blurred Image */}
+            <div 
+              className="w-1/2 bg-cover bg-center"
+              style={{ 
+                backgroundImage: `url(${heroImage})`,
+                filter: "blur(2px) brightness(0.9)"
+              }}
+            />
+            
+            {/* Right Side - Menu */}
+            <div className="w-1/2 bg-card flex flex-col">
+              {/* Header */}
+              <div className="flex items-center justify-end gap-4 px-8 py-6">
+                <span className="text-sm text-muted-foreground">Потрібна допомога?</span>
+                <Link
+                  to="/login"
+                  className="rounded-full border border-border px-8 py-3 text-sm font-medium text-foreground transition-all duration-200 hover:bg-muted"
+                >
+                  Увійти
+                </Link>
+                <button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-border text-foreground transition-all duration-200 hover:bg-muted"
+                  aria-label="Close menu"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              {/* Menu Links */}
+              <div className="flex-1 flex flex-col justify-center px-8 lg:px-16">
+                <nav className="space-y-4">
+                  {menuLinks.map((link, index) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      className="block text-2xl lg:text-3xl font-medium text-foreground hover:text-muted-foreground transition-colors duration-200"
+                      style={{ animationDelay: `${index * 50}ms` }}
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </nav>
+              </div>
+
+              {/* Footer Links */}
+              <div className="px-8 py-8">
+                <div className="flex flex-wrap gap-x-6 gap-y-2">
+                  {footerLinks.slice(0, 2).map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-x-6 gap-y-2 mt-2">
+                  {footerLinks.slice(2, 4).map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+                <div className="flex items-center justify-between mt-2">
+                  <a
+                    href="#"
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  >
+                    e-Privacy Settings
+                  </a>
+                  <span className="text-sm font-medium text-foreground">UA</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile: Full Screen Menu */}
+          <div className="md:hidden h-full bg-card flex flex-col">
+            {/* Header */}
+            <div className="flex items-center justify-between px-6 py-6">
+              <span className="text-sm text-muted-foreground">Потрібна допомога?</span>
+              <div className="flex items-center gap-3">
+                <Link
+                  to="/login"
+                  className="rounded-full border border-border px-6 py-2.5 text-sm font-medium text-foreground transition-all duration-200 hover:bg-muted"
+                >
+                  Увійти
+                </Link>
+                <button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-border text-foreground transition-all duration-200 hover:bg-muted"
+                  aria-label="Close menu"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Menu Links */}
+            <div className="flex-1 flex flex-col justify-center px-6">
+              <nav className="space-y-3">
+                {menuLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="block text-2xl font-medium text-foreground hover:text-muted-foreground transition-colors duration-200"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+            </div>
+
+            {/* Footer Links */}
+            <div className="px-6 py-8">
+              <div className="space-y-2">
+                {footerLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="block text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+              <div className="flex justify-end mt-4">
+                <span className="text-sm font-medium text-foreground">UA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
