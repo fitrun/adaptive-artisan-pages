@@ -9,11 +9,10 @@ import { AnimatedSection } from "@/hooks/use-scroll-animation";
 const menuLinks = [
   { label: "Products", href: "/products" },
   { label: "Store", href: "#" },
-  { label: "About Us", href: "#" },
-  { label: "For Business", href: "#" },
+  // { label: "About Us", href: "#" },
   { label: "Blog", href: "/blog" },
-  { label: "Affiliate Program", href: "#" },
-  { label: "Careers", href: "#" },
+  // { label: "Affiliate Program", href: "#" },
+  // { label: "Careers", href: "#" },
   { label: "Contacts", href: "#" },
 ];
 
