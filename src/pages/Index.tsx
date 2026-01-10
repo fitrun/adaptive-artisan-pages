@@ -6,7 +6,6 @@ import { useLanguage, SUPPORTED_LANGUAGES, Language } from "@/hooks/use-language
 
 const navLinks = [
   { label: "Продукти", href: "/products" },
-  { label: "Для Бізнесу", href: "#" },
   { label: "Магазин", href: "#" },
   { label: "Політика конфіденційності", href: "#" },
 ];
@@ -15,7 +14,6 @@ const menuLinks = [
   { label: "Продукти", href: "/products" },
   { label: "Магазин", href: "#" },
   { label: "Про нас", href: "#" },
-  { label: "Для Бізнесу", href: "#" },
   { label: "Блог", href: "/blog" },
   { label: "Партнерська програма", href: "#" },
   { label: "Кар'єра", href: "#" },
@@ -26,24 +24,24 @@ const footerLinks = [
   { label: "Умови надання послуг", href: "#" },
   { label: "Умови підписки", href: "#" },
   { label: "Політика конфіденційності", href: "#" },
-  { label: "Політика відшкодування", href: "#" },
+  // { label: "Політика відшкодування", href: "#" },
   { label: "e-Privacy Settings", href: "#" },
 ];
 
 const slides = [
   {
     id: 1,
-    title: "Програма пілатесу біля стіни: низькоінтенсивні тренування для початківців",
+    title: "Ранкова зарядка: енергія на весь день",
     image: heroImage,
   },
   {
     id: 2,
-    title: "Йога для початківців: базові вправи",
+    title: "Програма пілатесу біля стіни: низькоінтенсивні тренування для початківців",
     image: heroImage,
   },
   {
     id: 3,
-    title: "Ранкова зарядка: енергія на весь день",
+    title: "Йога для початківців: базові вправи",
     image: heroImage,
   },
   {
