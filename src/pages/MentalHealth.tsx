@@ -431,9 +431,9 @@ const MentalHealth = () => {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-6">
-              <Link to="/" className="text-xl font-bold text-foreground">
+              <LocalizedLink to="/" className="text-xl font-bold text-foreground">
                 BetterMe
-              </Link>
+              </LocalizedLink>
               <div className="flex items-center gap-4">
                 <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
@@ -474,9 +474,9 @@ const MentalHealth = () => {
         
         <div className="relative z-10 h-full flex flex-col">
           <div className="flex items-center justify-between px-6 py-6 md:px-10 lg:px-12">
-            <Link to="/" className="text-xl md:text-2xl font-bold text-foreground" onClick={() => setIsMenuOpen(false)}>
+            <LocalizedLink to="/" className="text-xl md:text-2xl font-bold text-foreground" onClick={() => setIsMenuOpen(false)}>
               BetterMe
-            </Link>
+            </LocalizedLink>
             <button
               onClick={() => setIsMenuOpen(false)}
               className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-transparent text-foreground transition-all duration-200 hover:bg-muted"
@@ -490,7 +490,7 @@ const MentalHealth = () => {
             <div className="flex-1 flex flex-col justify-center">
               <nav className="space-y-4 md:space-y-6">
                 {menuLinks.map((link, index) => (
-                  <Link
+                  <LocalizedLink
                     key={link.label}
                     to={link.href}
                     onClick={() => setIsMenuOpen(false)}
@@ -500,19 +500,19 @@ const MentalHealth = () => {
                     style={{ transitionDelay: `${index * 50}ms` }}
                   >
                     {link.label}
-                  </Link>
+                  </LocalizedLink>
                 ))}
               </nav>
             </div>
 
             <div className="mt-8 lg:mt-0 lg:ml-16 flex flex-col justify-center">
-              <Link
+              <LocalizedLink
                 to="/login"
                 onClick={() => setIsMenuOpen(false)}
                 className="inline-flex items-center justify-center rounded-full border border-border bg-transparent px-8 py-3 text-sm font-medium text-foreground transition-all duration-200 hover:bg-muted w-fit mb-6"
               >
                 Log in
-              </Link>
+              </LocalizedLink>
               
               <div 
                 className="relative inline-block"
@@ -520,7 +520,7 @@ const MentalHealth = () => {
                 onMouseLeave={() => setIsMenuLangHovered(false)}
               >
                 <button className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200">
-                  {languages.find(l => l.code === currentLang)?.label}
+                  {languageLabels[lang]}
                 </button>
                 
                 <div className={`absolute bottom-full left-0 pb-2 transition-all duration-300 ${
@@ -529,15 +529,15 @@ const MentalHealth = () => {
                     : "opacity-0 translate-y-2 pointer-events-none"
                 }`}>
                   <div className="flex flex-col gap-2 bg-card rounded-lg p-2 shadow-lg border border-border">
-                    {languages
-                      .filter(lang => lang.code !== currentLang)
-                      .map((lang) => (
+                    {SUPPORTED_LANGUAGES
+                      .filter(l => l !== lang)
+                      .map((l) => (
                         <button
-                          key={lang.code}
-                          onClick={() => setCurrentLang(lang.code)}
+                          key={l}
+                          onClick={() => setLang(l)}
                           className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors text-left px-3 py-1.5 rounded hover:bg-muted"
                         >
-                          {lang.label}
+                          {languageLabels[l]}
                         </button>
                       ))}
                   </div>

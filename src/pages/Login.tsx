@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { Eye, EyeOff, HelpCircle } from "lucide-react";
 import heroImage from "@/assets/hero-login.jpg";
+import { LocalizedLink } from "@/components/LocalizedLink";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -21,9 +21,9 @@ const Login = () => {
       <div className="hidden md:block md:w-1/2 relative bg-betterme-light">
         {/* Logo */}
         <div className="absolute top-8 left-8 z-10">
-          <Link to="/" className="text-xl font-bold text-foreground">
+          <LocalizedLink to="/" className="text-xl font-bold text-foreground">
             BetterMe
-          </Link>
+          </LocalizedLink>
         </div>
 
         {/* Hero Image with Watermark */}
@@ -45,9 +45,9 @@ const Login = () => {
 
       {/* Mobile Header */}
       <div className="md:hidden w-full bg-card border-b border-border px-6 py-4">
-        <Link to="/" className="text-xl font-bold text-foreground flex justify-center">
+        <LocalizedLink to="/" className="text-xl font-bold text-foreground flex justify-center">
           BetterMe
-        </Link>
+        </LocalizedLink>
       </div>
 
       {/* Right Side - Login Form */}
