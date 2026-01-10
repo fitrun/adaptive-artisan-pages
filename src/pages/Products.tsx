@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Star } from "lucide-react";
 import heroImage from "@/assets/hero-landing.jpg";
@@ -128,21 +128,50 @@ const Products = () => {
   const [currentLang, setCurrentLang] = useState("EN");
   const [isLangHovered, setIsLangHovered] = useState(false);
   const [isMenuLangHovered, setIsMenuLangHovered] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY < 100) {
+        setIsHeaderVisible(true);
+      } else if (currentScrollY > lastScrollY) {
+        // Scrolling down
+        setIsHeaderVisible(false);
+      } else {
+        // Scrolling up
+        setIsHeaderVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 px-6 py-6 md:px-10 lg:px-12 bg-primary">
+      <header className={`fixed top-0 left-0 right-0 z-50 px-6 py-6 md:px-10 lg:px-12 bg-card transition-transform duration-300 ${
+        isHeaderVisible ? "translate-y-0" : "-translate-y-full"
+      }`}>
         <nav className="flex items-center justify-between max-w-7xl mx-auto">
           {/* Logo */}
-          <Link to="/" className="text-xl md:text-2xl font-bold text-primary-foreground">
+          <Link to="/" className="text-xl md:text-2xl font-bold text-foreground">
             BetterMe
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link key={link.label} to={link.href} className="nav-link">
+              <Link 
+                key={link.label} 
+                to={link.href} 
+                className="text-sm font-medium text-foreground hover:text-muted-foreground transition-colors duration-200"
+              >
                 {link.label}
               </Link>
             ))}
@@ -153,7 +182,7 @@ const Products = () => {
             {/* Login Button */}
             <Link
               to="/login"
-              className="hidden md:flex items-center justify-center rounded-full border border-primary-foreground/30 bg-transparent px-8 py-3 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary-foreground/10"
+              className="hidden md:flex items-center justify-center rounded-full border border-border bg-transparent px-8 py-3 text-sm font-medium text-foreground transition-all duration-200 hover:bg-muted"
             >
               Увійти
             </Link>
@@ -164,7 +193,7 @@ const Products = () => {
               onMouseEnter={() => setIsLangHovered(true)}
               onMouseLeave={() => setIsLangHovered(false)}
             >
-              <button className="flex items-center justify-center text-sm font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-200 px-2 py-1">
+              <button className="flex items-center justify-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 px-2 py-1">
                 {currentLang}
               </button>
               
@@ -174,7 +203,7 @@ const Products = () => {
                   : "opacity-0 -translate-y-2 pointer-events-none"
               }`}>
                 <div className="flex flex-col items-center">
-                  <div className={`w-5 h-px bg-primary-foreground/40 mb-3 transition-all duration-300 delay-100 ${
+                  <div className={`w-5 h-px bg-border mb-3 transition-all duration-300 delay-100 ${
                     isLangHovered ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
                   }`} />
                   <div className="flex flex-col items-center gap-2">
@@ -184,7 +213,7 @@ const Products = () => {
                         <button
                           key={lang.code}
                           onClick={() => setCurrentLang(lang.code)}
-                          className={`text-sm font-medium text-primary-foreground/50 hover:text-primary-foreground transition-all duration-300 ${
+                          className={`text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 ${
                             isLangHovered 
                               ? "opacity-100 translate-y-0" 
                               : "opacity-0 -translate-y-2"
@@ -202,7 +231,7 @@ const Products = () => {
             {/* Menu Button */}
             <button
               onClick={() => setIsMenuOpen(true)}
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-primary-foreground/30 bg-transparent text-primary-foreground transition-all duration-200 hover:bg-primary-foreground/10"
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-transparent text-foreground transition-all duration-200 hover:bg-muted"
               aria-label="Open menu"
             >
               <Menu className="h-5 w-5" />
