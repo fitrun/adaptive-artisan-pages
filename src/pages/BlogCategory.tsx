@@ -10,11 +10,10 @@ import { useParams } from "react-router-dom";
 const menuLinks = [
   { label: "Products", href: "/products" },
   { label: "Store", href: "#" },
-  { label: "About Us", href: "#" },
-  { label: "For Business", href: "#" },
+  // { label: "About Us", href: "#" },
   { label: "Blog", href: "/blog" },
-  { label: "Affiliate Program", href: "#" },
-  { label: "Careers", href: "#" },
+  // { label: "Affiliate Program", href: "#" },
+  // { label: "Careers", href: "#" },
   { label: "Contacts", href: "#" },
 ];
 
@@ -213,7 +212,7 @@ const BlogCategory = () => {
         <div className="flex items-center justify-between px-6 py-4 md:px-10 lg:px-12">
           <div className="flex items-center gap-4">
             <LocalizedLink to="/" className="text-xl md:text-2xl font-bold text-foreground">
-              BetterMe
+              FitRun
             </LocalizedLink>
             <span className="text-xl md:text-2xl font-light text-muted-foreground">Blog</span>
           </div>
@@ -359,10 +358,10 @@ const BlogCategory = () => {
           
           <div className="flex flex-wrap items-start justify-between gap-8 pt-8">
             <div className="max-w-md">
-              <p className="text-sm text-muted-foreground mb-2">© 2026. BetterMe</p>
+              <p className="text-sm text-muted-foreground mb-2">© 2026. FitRun</p>
               <p className="text-xs text-muted-foreground">
                 Our website services, content and products are for informational purposes only. 
-                BetterMe does not provide medical advice, diagnosis, or treatment
+                FitRun does not provide medical advice, diagnosis, or treatment
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-6">
@@ -389,7 +388,7 @@ const BlogCategory = () => {
           <div className="flex items-center justify-between px-6 py-6 md:px-10 lg:px-12">
             <div className="flex items-center gap-4">
               <LocalizedLink to="/" className="text-xl md:text-2xl font-bold text-foreground" onClick={() => setIsMenuOpen(false)}>
-                BetterMe
+                FitRun
               </LocalizedLink>
               <span className="text-xl md:text-2xl font-light text-muted-foreground">Blog</span>
             </div>
