@@ -13,10 +13,10 @@ const navLinks = [
 const menuLinks = [
   { label: "Продукти", href: "/products" },
   { label: "Магазин", href: "#" },
-  { label: "Про нас", href: "#" },
+  // { label: "Про нас", href: "#" },
   { label: "Блог", href: "/blog" },
-  { label: "Партнерська програма", href: "#" },
-  { label: "Кар'єра", href: "#" },
+  // { label: "Партнерська програма", href: "#" },
+  // { label: "Кар'єра", href: "#" },
   { label: "Контакти", href: "#" },
 ];
 
