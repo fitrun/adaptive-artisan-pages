@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, ArrowLeft } from "lucide-react";
 import { LocalizedLink } from "@/components/LocalizedLink";
 import { useLanguage, SUPPORTED_LANGUAGES, Language } from "@/hooks/use-language";
 import { BlogNavigation } from "@/components/BlogNavigation";
 import { AnimatedSection } from "@/hooks/use-scroll-animation";
+import { useParams } from "react-router-dom";
 
 const menuLinks = [
   { label: "Products", href: "/products" },
@@ -24,38 +25,141 @@ const languageLabels: Record<Language, string> = {
   es: "ES",
 };
 
-const categories = [
-  { name: "Nutrition", slug: "nutrition", articles: 494, image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=400&fit=crop" },
-  { name: "Diets", slug: "diets", articles: 494, image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop" },
-  { name: "Weight Loss", slug: "weight-loss", articles: 287, image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop" },
-  { name: "Fitness", slug: "fitness", articles: 490, image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&h=400&fit=crop" },
-  { name: "Workouts", slug: "workouts", articles: 412, image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop" },
-  { name: "Mental Health", slug: "mental-health", articles: 69, image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=400&fit=crop" },
-  { name: "Recipes", slug: "recipes", articles: 828, image: "https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=600&h=400&fit=crop" },
-  { name: "Healthy Eating", slug: "healthy-eating", articles: 104, image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=600&h=400&fit=crop" },
-  { name: "Meal Plans", slug: "meal-plans", articles: 438, image: "https://images.unsplash.com/photo-1547592180-85f173990554?w=600&h=400&fit=crop" },
-];
+// Mock category data
+const categoryData: Record<string, { name: string; description: string }> = {
+  "nutrition": { name: "Nutrition", description: "Explore evidence-based nutrition advice, healthy eating tips, and dietary guidelines for optimal health." },
+  "diets": { name: "Diets", description: "Discover popular diet plans, from keto to Mediterranean, and find the approach that works best for you." },
+  "fitness": { name: "Fitness", description: "Get inspired with workout routines, exercise tips, and fitness strategies for all levels." },
+  "weight-loss": { name: "Weight Loss", description: "Science-backed weight loss strategies, success stories, and practical tips for sustainable results." },
+  "mental-health": { name: "Mental Health", description: "Resources for mental wellness, stress management, meditation, and mindfulness practices." },
+  "corporate-wellness": { name: "Corporate Wellness", description: "Workplace wellness programs, employee health initiatives, and productivity tips." },
+  "workouts": { name: "Workouts", description: "Effective workout routines for building strength, endurance, and flexibility." },
+  "recipes": { name: "Recipes", description: "Healthy and delicious recipes for every meal, dietary preference, and skill level." },
+  "healthy-eating": { name: "Healthy Eating", description: "Tips and guides for making nutritious food choices and building healthy eating habits." },
+  "meal-plans": { name: "Meal Plans", description: "Structured meal plans to help you achieve your health and fitness goals." },
+};
 
-const featuredArticles = [
+// Mock articles data
+const allArticles = [
   {
-    slug: "high-protein-lunch-box-ideas",
-    category: "Meal Ideas",
+    slug: "high-protein-lunch-ideas",
+    category: "nutrition",
     title: "High Protein Lunch Box Ideas: 5 Quick Meals For On-The-Go",
     author: "Maja Petrushevska",
     date: "January 8, 2026",
-    views: 1,
+    views: 1245,
     reviewer: "Kristen Fleming, RD",
     image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=400&fit=crop",
   },
   {
     slug: "is-2-meals-a-day-enough",
-    category: "Nutrition",
+    category: "nutrition",
     title: "Is 2 Meals A Day Enough? Everything You Should Know",
     author: "Shadrack Korir",
     date: "January 9, 2026",
-    views: 4,
+    views: 4521,
     reviewer: "Kristen Fleming, RD",
     image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=400&fit=crop",
+  },
+  {
+    slug: "intermittent-fasting-guide",
+    category: "diets",
+    title: "The Complete Guide to Intermittent Fasting",
+    author: "Maja Petrushevska",
+    date: "January 7, 2026",
+    views: 8932,
+    reviewer: "Kristen Fleming, RD",
+    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop",
+  },
+  {
+    slug: "keto-diet-beginners",
+    category: "diets",
+    title: "Keto Diet for Beginners: A Complete Guide",
+    author: "Elena Rodriguez",
+    date: "January 6, 2026",
+    views: 12450,
+    reviewer: "Dr. Mark Wilson",
+    image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=600&h=400&fit=crop",
+  },
+  {
+    slug: "mediterranean-diet-benefits",
+    category: "diets",
+    title: "10 Science-Backed Benefits of the Mediterranean Diet",
+    author: "Shadrack Korir",
+    date: "January 5, 2026",
+    views: 6789,
+    reviewer: "Kristen Fleming, RD",
+    image: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&h=400&fit=crop",
+  },
+  {
+    slug: "home-workout-routine",
+    category: "fitness",
+    title: "30-Minute Home Workout Routine for Busy People",
+    author: "Alex Thompson",
+    date: "January 8, 2026",
+    views: 9876,
+    reviewer: "Dr. Sarah Mitchell",
+    image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&h=400&fit=crop",
+  },
+  {
+    slug: "strength-training-benefits",
+    category: "fitness",
+    title: "Why Strength Training is Essential for Everyone",
+    author: "Michael Chen",
+    date: "January 4, 2026",
+    views: 5432,
+    reviewer: "Dr. James Brown",
+    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop",
+  },
+  {
+    slug: "yoga-for-beginners",
+    category: "fitness",
+    title: "Yoga for Beginners: Start Your Practice Today",
+    author: "Lisa Park",
+    date: "January 3, 2026",
+    views: 7654,
+    reviewer: "Dr. Emily White",
+    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=400&fit=crop",
+  },
+  {
+    slug: "sustainable-weight-loss",
+    category: "weight-loss",
+    title: "Sustainable Weight Loss: Tips That Actually Work",
+    author: "Maja Petrushevska",
+    date: "January 7, 2026",
+    views: 11234,
+    reviewer: "Kristen Fleming, RD",
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
+  },
+  {
+    slug: "calorie-deficit-explained",
+    category: "weight-loss",
+    title: "Calorie Deficit Explained: The Key to Weight Loss",
+    author: "Shadrack Korir",
+    date: "January 2, 2026",
+    views: 8765,
+    reviewer: "Dr. Mark Wilson",
+    image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=400&fit=crop",
+  },
+  {
+    slug: "meditation-for-beginners",
+    category: "mental-health",
+    title: "Meditation for Beginners: A Step-by-Step Guide",
+    author: "Lisa Park",
+    date: "January 6, 2026",
+    views: 6543,
+    reviewer: "Dr. Emily White",
+    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=400&fit=crop",
+  },
+  {
+    slug: "stress-management-techniques",
+    category: "mental-health",
+    title: "10 Effective Stress Management Techniques",
+    author: "Elena Rodriguez",
+    date: "January 1, 2026",
+    views: 4321,
+    reviewer: "Dr. Sarah Mitchell",
+    image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=600&h=400&fit=crop",
   },
 ];
 
@@ -87,11 +191,19 @@ const footerBottomLinks = [
   { label: "e-Privacy Settings", href: "#" },
 ];
 
-const Blog = () => {
+const BlogCategory = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLangHovered, setIsLangHovered] = useState(false);
   const [isMenuLangHovered, setIsMenuLangHovered] = useState(false);
   const { lang, setLang } = useLanguage();
+  const { category } = useParams();
+
+  const categorySlug = category || "nutrition";
+  const categoryInfo = categoryData[categorySlug] || { name: categorySlug, description: "" };
+  
+  // Filter articles by category
+  const filteredArticles = allArticles.filter(
+    (article) => article.category === categorySlug
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -127,88 +239,99 @@ const Blog = () => {
           </div>
         </div>
         
-        {/* Blog Navigation */}
         <BlogNavigation />
       </header>
 
-      {/* Featured Section */}
-      <AnimatedSection animation="fade-up" className="py-12 px-6 md:px-10 lg:px-12">
+      {/* Category Header */}
+      <AnimatedSection animation="fade-up" className="py-12 px-6 md:px-10 lg:px-12 border-b border-border">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground">Diets</h1>
-            <button className="flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground hover:bg-muted transition-colors">
-              All Diets
-              <ArrowRight className="h-4 w-4" />
-            </button>
+          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+            <LocalizedLink to="/blog" className="hover:text-foreground transition-colors flex items-center gap-1">
+              <ArrowLeft className="h-4 w-4" />
+              Blog
+            </LocalizedLink>
+            <span>/</span>
+            <span>{categoryInfo.name}</span>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8">
-            {featuredArticles.map((article, index) => (
-              <LocalizedLink 
-                key={index} 
-                to={`/article/${article.slug}`}
-                className="group cursor-pointer block"
-              >
-                <div className="aspect-[4/3] overflow-hidden mb-4">
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <span className="inline-block px-3 py-1 text-xs font-medium bg-muted rounded-full mb-3">
-                  {article.category}
-                </span>
-                <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-3 group-hover:text-muted-foreground transition-colors">
-                  {article.title}
-                </h2>
-                <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mb-2">
-                  <span>By <span className="underline">{article.author}</span></span>
-                  <span>|</span>
-                  <span>{article.date}</span>
-                  <span>|</span>
-                  <span>{article.views} views</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <div className="w-6 h-6 rounded-full bg-muted" />
-                  <span>Reviewed by <span className="underline">{article.reviewer}</span></span>
-                </div>
-              </LocalizedLink>
-            ))}
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-3">{categoryInfo.name}</h1>
+              <p className="text-lg text-muted-foreground max-w-2xl">{categoryInfo.description}</p>
+            </div>
+            <div className="text-sm text-muted-foreground">
+              {filteredArticles.length} {filteredArticles.length === 1 ? "Article" : "Articles"}
+            </div>
           </div>
         </div>
       </AnimatedSection>
 
-      {/* Categories Grid */}
-      <AnimatedSection animation="fade-up" delay={0.2} className="py-12 px-6 md:px-10 lg:px-12">
+      {/* Articles Grid */}
+      <section className="py-12 px-6 md:px-10 lg:px-12">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {categories.map((category) => (
-              <LocalizedLink
-                key={category.name}
-                to={`/blog/${category.slug}`}
-                className="group relative aspect-[4/3] overflow-hidden"
+          {filteredArticles.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredArticles.map((article, index) => (
+                <AnimatedSection key={article.slug} animation="fade-up" delay={0.1 * (index % 6)}>
+                  <LocalizedLink 
+                    to={`/article/${article.slug}`}
+                    className="group block"
+                  >
+                    <div className="aspect-[4/3] overflow-hidden mb-4">
+                      <img
+                        src={article.image}
+                        alt={article.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                    <span className="inline-block px-3 py-1 text-xs font-medium bg-muted mb-3">
+                      {categoryInfo.name}
+                    </span>
+                    <h2 className="text-lg md:text-xl font-semibold text-foreground mb-3 group-hover:text-muted-foreground transition-colors line-clamp-2">
+                      {article.title}
+                    </h2>
+                    <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mb-2">
+                      <span>By <span className="underline">{article.author}</span></span>
+                      <span>|</span>
+                      <span>{article.date}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <span>{article.views.toLocaleString()} views</span>
+                    </div>
+                  </LocalizedLink>
+                </AnimatedSection>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <p className="text-lg text-muted-foreground mb-4">No articles found in this category.</p>
+              <LocalizedLink 
+                to="/blog"
+                className="inline-flex items-center gap-2 text-foreground hover:text-muted-foreground transition-colors"
               >
-                <img
-                  src={category.image}
-                  alt={category.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                  <h3 className="text-2xl md:text-3xl font-bold mb-1">{category.name}</h3>
-                  <p className="text-sm opacity-80">{category.articles} Articles</p>
-                </div>
+                <ArrowLeft className="h-4 w-4" />
+                Back to Blog
               </LocalizedLink>
-            ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Load More (placeholder) */}
+      {filteredArticles.length >= 6 && (
+        <div className="pb-12 px-6 md:px-10 lg:px-12">
+          <div className="max-w-7xl mx-auto flex justify-center">
+            <button className="flex items-center gap-2 rounded-full border border-border px-8 py-3 text-sm font-medium text-foreground hover:bg-muted transition-colors">
+              Load More Articles
+              <ArrowRight className="h-4 w-4" />
+            </button>
           </div>
         </div>
-      </AnimatedSection>
+      )}
 
       {/* Footer */}
       <footer className="bg-muted/50 border-t border-border">
         <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 py-12">
-          {/* Social & Nav Links */}
           <div className="flex flex-wrap items-center justify-between gap-8 pb-8 border-b border-border">
             <div className="flex flex-wrap items-center gap-6">
               {socialLinks.map((link) => (
@@ -234,7 +357,6 @@ const Blog = () => {
             </div>
           </div>
           
-          {/* Bottom Section */}
           <div className="flex flex-wrap items-start justify-between gap-8 pt-8">
             <div className="max-w-md">
               <p className="text-sm text-muted-foreground mb-2">© 2026. BetterMe</p>
@@ -346,4 +468,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default BlogCategory;
