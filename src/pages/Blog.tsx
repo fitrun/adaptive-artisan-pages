@@ -143,7 +143,7 @@ const Blog = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {featuredArticles.map((article, index) => (
               <article key={index} className="group cursor-pointer">
-                <div className="aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                <div className="aspect-[4/3] overflow-hidden mb-4">
                   <img
                     src={article.image}
                     alt={article.title}
@@ -181,7 +181,7 @@ const Blog = () => {
               <LocalizedLink
                 key={category.name}
                 to={`/blog/${category.name.toLowerCase().replace(" ", "-")}`}
-                className="group relative aspect-[4/3] overflow-hidden rounded-lg"
+                className="group relative aspect-[4/3] overflow-hidden"
               >
                 <img
                   src={category.image}
