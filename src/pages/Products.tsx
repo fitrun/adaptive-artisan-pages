@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Star } from "lucide-react";
 import heroImage from "@/assets/hero-landing.jpg";
+import { AnimatedSection } from "@/hooks/use-scroll-animation";
 
 const navLinks = [
   { label: "Продукти", href: "/products" },
@@ -237,7 +238,7 @@ const Products = () => {
       </section>
 
       {/* Popular Programs - Health Coaching */}
-      <section className="py-16 md:py-24 px-6 bg-background">
+      <AnimatedSection className="py-16 md:py-24 px-6 bg-background" animation="fade-up">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground text-center mb-12 md:mb-16">
             The most popular programs<br />in BetterMe: Health Coaching
@@ -270,10 +271,10 @@ const Products = () => {
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Hero Section - Mental Health */}
-      <section className="relative py-16 md:py-24 px-6 bg-primary">
+      <AnimatedSection className="relative py-16 md:py-24 px-6 bg-primary" animation="scale">
         <div className="max-w-7xl mx-auto">
           <div className="relative h-[500px] md:h-[600px] rounded-3xl overflow-hidden">
             <div
@@ -300,10 +301,10 @@ const Products = () => {
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Popular Programs - Mental Health */}
-      <section className="py-16 md:py-24 px-6 bg-primary">
+      <AnimatedSection className="py-16 md:py-24 px-6 bg-primary" animation="fade-up">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-primary-foreground text-center mb-12 md:mb-16">
             The most popular programs<br />in BetterMe: Mental Health
@@ -336,10 +337,10 @@ const Products = () => {
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Stats Section */}
-      <section className="py-16 md:py-24 px-6 bg-secondary">
+      <AnimatedSection className="py-16 md:py-24 px-6 bg-secondary" animation="slide-left">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground mb-12 md:mb-16">
             Join the millions creating<br />happiness with BetterMe
@@ -361,10 +362,10 @@ const Products = () => {
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Testimonials Section */}
-      <section className="py-16 md:py-24 px-6 bg-background">
+      <AnimatedSection className="py-16 md:py-24 px-6 bg-background" animation="fade-up">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground text-center mb-4">
             What our clients say
@@ -404,10 +405,10 @@ const Products = () => {
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Meet the BetterMe World */}
-      <section className="py-16 md:py-24 px-6 bg-background">
+      <AnimatedSection className="py-16 md:py-24 px-6 bg-background" animation="slide-right">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground text-center mb-12 md:mb-16">
             Meet the BetterMe World
@@ -443,7 +444,7 @@ const Products = () => {
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Footer */}
       <footer className="py-12 md:py-16 px-6 bg-secondary">
