@@ -7,7 +7,6 @@ import { useLanguage, SUPPORTED_LANGUAGES, Language } from "@/hooks/use-language
 
 const navLinks = [
   { label: "Продукти", href: "/products" },
-  { label: "Для Бізнесу", href: "#" },
   { label: "Магазин", href: "#" },
   { label: "Політика конфіденційності", href: "#" },
 ];
@@ -15,11 +14,10 @@ const navLinks = [
 const menuLinks = [
   { label: "Продукти", href: "/products" },
   { label: "Магазин", href: "#" },
-  { label: "Про нас", href: "#" },
-  { label: "Для Бізнесу", href: "#" },
+  // { label: "Про нас", href: "#" },
   { label: "Блог", href: "#" },
-  { label: "Партнерська програма", href: "#" },
-  { label: "Кар'єра", href: "#" },
+  // { label: "Партнерська програма", href: "#" },
+  // { label: "Кар'єра", href: "#" },
   { label: "Контакти", href: "#" },
 ];
 
@@ -27,7 +25,7 @@ const footerLinks = [
   { label: "Умови надання послуг", href: "#" },
   { label: "Умови підписки", href: "#" },
   { label: "Політика конфіденційності", href: "#" },
-  { label: "Політика відшкодування", href: "#" },
+  // { label: "Політика відшкодування", href: "#" },
   { label: "e-Privacy Settings", href: "#" },
 ];
 
