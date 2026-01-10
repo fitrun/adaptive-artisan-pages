@@ -16,7 +16,7 @@ const menuLinks = [
   { label: "Магазин", href: "#" },
   { label: "Про нас", href: "#" },
   { label: "Для Бізнесу", href: "#" },
-  { label: "Блог", href: "#" },
+  { label: "Блог", href: "/blog" },
   { label: "Партнерська програма", href: "#" },
   { label: "Кар'єра", href: "#" },
   { label: "Контакти", href: "#" },
@@ -284,14 +284,14 @@ const Index = () => {
               <div className="flex-1 flex flex-col justify-center px-8 lg:px-16">
                 <nav className="space-y-4">
                   {menuLinks.map((link, index) => (
-                    <a
+                    <LocalizedLink
                       key={link.label}
-                      href={link.href}
+                      to={link.href}
                       className="block text-2xl lg:text-3xl font-medium text-foreground hover:text-muted-foreground transition-colors duration-200"
                       style={{ animationDelay: `${index * 50}ms` }}
                     >
                       {link.label}
-                    </a>
+                    </LocalizedLink>
                   ))}
                 </nav>
               </div>
@@ -403,13 +403,13 @@ const Index = () => {
             <div className="flex-1 flex flex-col justify-center px-6">
               <nav className="space-y-3">
                 {menuLinks.map((link) => (
-                  <a
+                  <LocalizedLink
                     key={link.label}
-                    href={link.href}
+                    to={link.href}
                     className="block text-2xl font-medium text-foreground hover:text-muted-foreground transition-colors duration-200"
                   >
                     {link.label}
-                  </a>
+                  </LocalizedLink>
                 ))}
               </nav>
             </div>
