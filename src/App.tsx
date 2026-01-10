@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { PageTransition } from "@/components/PageTransition";
-import { LanguageProvider, DEFAULT_LANGUAGE } from "@/hooks/use-language";
+import { LanguageProvider, detectBrowserLanguage } from "@/hooks/use-language";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Products from "./pages/Products";
@@ -22,8 +22,8 @@ const AnimatedRoutes = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        {/* Redirect root to default language */}
-        <Route path="/" element={<Navigate to={`/${DEFAULT_LANGUAGE}`} replace />} />
+        {/* Redirect root to detected browser language */}
+        <Route path="/" element={<Navigate to={`/${detectBrowserLanguage()}`} replace />} />
         
         {/* Language-prefixed routes */}
         <Route path="/:lang" element={<LanguageProvider><PageTransition><Index /></PageTransition></LanguageProvider>} />

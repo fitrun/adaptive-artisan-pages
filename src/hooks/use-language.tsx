@@ -5,6 +5,20 @@ export const SUPPORTED_LANGUAGES = ["en", "ua", "de", "fr", "es"] as const;
 export type Language = typeof SUPPORTED_LANGUAGES[number];
 export const DEFAULT_LANGUAGE: Language = "en";
 
+export const detectBrowserLanguage = (): Language => {
+  // Get browser language (e.g., "en-US", "de", "fr-FR")
+  const browserLang = navigator.language || (navigator as any).userLanguage || "";
+  // Extract the primary language code (e.g., "en" from "en-US")
+  const primaryLang = browserLang.split("-")[0].toLowerCase();
+  
+  // Check if it's a supported language
+  if (SUPPORTED_LANGUAGES.includes(primaryLang as Language)) {
+    return primaryLang as Language;
+  }
+  
+  return DEFAULT_LANGUAGE;
+};
+
 interface LanguageContextType {
   lang: Language;
   setLang: (lang: Language) => void;
