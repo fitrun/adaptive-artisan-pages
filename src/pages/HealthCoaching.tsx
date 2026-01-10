@@ -81,19 +81,19 @@ const testimonials = [
     id: 2,
     text: "",
     author: "@yavuz.ozan",
-    subtitle: "BetterMe Ambassador",
+    subtitle: "FitRun Ambassador",
     isImage: true,
   },
   {
     id: 3,
-    text: "Love the BetterMe! I absolutely love the BetterMe app, the exercises for seniors are perfect and I look forward to it every day ❤️",
+    text: "Love the FitRun! I absolutely love the FitRun app, the exercises for seniors are perfect and I look forward to it every day ❤️",
     author: "C.",
     date: "May 05, 2024",
     isImage: false,
   },
   {
     id: 4,
-    text: "I'm 58 and I'm very happy that I discovered you! Believe my life is much nicer with this App. I recommend BetterMe everyday.",
+    text: "I'm 58 and I'm very happy that I discovered you! Believe my life is much nicer with this App. I recommend FitRun everyday.",
     author: "T.",
     date: "June 25, 2024",
     isImage: false,
@@ -102,12 +102,12 @@ const testimonials = [
     id: 5,
     text: "",
     author: "@nazashevchuk",
-    subtitle: "BetterMe Ambassador",
+    subtitle: "FitRun Ambassador",
     isImage: true,
   },
   {
     id: 6,
-    text: "BetterMe has made a huge difference in my life. it was very encouraging and extremely helpful. I am a very committed fan and love the coaches whose help was so valuable. Thank you!",
+    text: "FitRun has made a huge difference in my life. it was very encouraging and extremely helpful. I am a very committed fan and love the coaches whose help was so valuable. Thank you!",
     author: "M.",
     date: "June 27, 2024",
     isImage: false,
@@ -121,7 +121,7 @@ const featuredIn = [
   },
   {
     name: "COSMOPOLITAN",
-    quote: "The BetterMe Health Coaching app is a companion for implementing a healthier lifestyle.",
+    quote: "The FitRun Health Coaching app is a companion for implementing a healthier lifestyle.",
   },
   {
     name: "Healthnews",
@@ -171,7 +171,7 @@ const HealthCoaching = () => {
       }`}>
         <nav className="flex items-center justify-between max-w-7xl mx-auto">
           <LocalizedLink to="" className="text-xl md:text-2xl font-bold text-foreground">
-            BetterMe
+            FitRun
           </LocalizedLink>
 
           <div className="hidden lg:flex items-center gap-8">
@@ -258,7 +258,7 @@ const HealthCoaching = () => {
             Body & Mind Wellness<br />Plans for Real Change
           </h1>
           <p className="text-lg md:text-xl text-primary-foreground/90 mb-10">
-            Discover BetterMe: Health Coaching App
+            Discover FitRun: Health Coaching App
           </p>
           <button className="rounded-full bg-card px-10 py-4 text-sm font-medium text-foreground transition-all duration-200 hover:bg-card/90 hover:scale-105">
             Download
@@ -295,7 +295,7 @@ const HealthCoaching = () => {
           </div>
           
           <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            Stay hydrated and track your steps with ease. Leave the math to BetterMe and focus on your health & body goals
+            Stay hydrated and track your steps with ease. Leave the math to FitRun and focus on your health & body goals
           </p>
           
           <div className="flex items-center justify-center gap-3">
@@ -325,7 +325,7 @@ const HealthCoaching = () => {
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground">
-            Go further with<br />BetterMe Fitness Tracker
+            Go further with<br />FitRun Fitness Tracker
           </h2>
         </div>
       </section>
@@ -346,12 +346,12 @@ const HealthCoaching = () => {
           </div>
           
           <div>
-            <p className="text-primary font-medium mb-4">BetterMe Fitness Tracker</p>
+            <p className="text-primary font-medium mb-4">FitRun Fitness Tracker</p>
             <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
               Track & Transform<br />your body
             </h3>
             <p className="text-muted-foreground mb-8">
-              <span className="font-semibold text-foreground">BetterMe Fitness Tracker</span> works in sync with the{" "}
+              <span className="font-semibold text-foreground">FitRun Fitness Tracker</span> works in sync with the{" "}
               <span className="font-semibold text-foreground">Health Coaching App</span> and tracks your heart rate, steps, and sleep stats.
             </p>
             <button className="rounded-full bg-destructive px-10 py-4 text-sm font-medium text-destructive-foreground transition-all duration-200 hover:bg-destructive/90 hover:scale-105">
@@ -554,7 +554,7 @@ const HealthCoaching = () => {
           
           <div>
             <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
-              BetterMe:<br />Health Coaching
+              FitRun:<br />Health Coaching
             </h3>
             
             <div className="space-y-3 mb-8">
@@ -587,12 +587,12 @@ const HealthCoaching = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background/30 to-background/60" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-          <p className="text-primary-foreground font-medium mb-4">BetterMe Store</p>
+          <p className="text-primary-foreground font-medium mb-4">FitRun Store</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground italic mb-8">
             Find your perfect<br />workout set
           </h2>
           <button className="rounded-full bg-card px-10 py-4 text-sm font-medium text-foreground transition-all duration-200 hover:bg-card/90 hover:scale-105">
-            View BetterMe Store
+            View FitRun Store
           </button>
         </div>
       </section>
@@ -623,9 +623,9 @@ const HealthCoaching = () => {
                   </a>
                 ))}
               </div>
-              <p className="text-sm font-medium text-foreground mb-2">© 2026. BetterMe.</p>
+              <p className="text-sm font-medium text-foreground mb-2">© 2026. FitRun.</p>
               <p className="text-xs text-muted-foreground">
-                Our website services, content and products are for informational purposes only. BetterMe does not provide medical advice, diagnosis, or treatment
+                Our website services, content and products are for informational purposes only. FitRun does not provide medical advice, diagnosis, or treatment
               </p>
             </div>
             
@@ -673,7 +673,7 @@ const HealthCoaching = () => {
         <div className="flex flex-col h-full px-6 py-6 md:px-10 lg:px-12">
           <div className="flex items-center justify-between mb-12">
             <LocalizedLink to="" className="text-xl md:text-2xl font-bold text-foreground">
-              BetterMe
+              FitRun
             </LocalizedLink>
             
             <div className="flex items-center gap-3">
