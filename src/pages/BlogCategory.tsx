@@ -122,6 +122,16 @@ const allArticles = [
     image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=400&fit=crop",
   },
   {
+    slug: "calisthenics-bodyweight-training-guide",
+    category: "workouts",
+    title: "What Does Calisthenics Mean? Your Simple Guide to Bodyweight Training",
+    author: "Jordan Lee",
+    date: "January 10, 2026",
+    views: 2864,
+    reviewer: "Dr. Nina Patel",
+    image: "https://images.unsplash.com/photo-1483721310020-03333e577078?w=600&h=400&fit=crop",
+  },
+  {
     slug: "sustainable-weight-loss",
     category: "weight-loss",
     title: "Sustainable Weight Loss: Tips That Actually Work",

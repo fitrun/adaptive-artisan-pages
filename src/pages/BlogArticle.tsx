@@ -26,94 +26,203 @@ const languageLabels: Record<Language, string> = {
 };
 
 // Mock article data - in a real app this would come from an API
-const articleData = {
-  category: "Nutrition",
-  title: "Is 2 Meals A Day Enough? Everything You Should Know",
-  subtitle: "Discover the science behind meal frequency and how it affects your metabolism, energy levels, and overall health.",
-  author: {
-    name: "Shadrack Korir",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
-    role: "Health & Nutrition Writer",
-    bio: "Shadrack is a certified nutritionist with over 8 years of experience in health journalism. He specializes in evidence-based nutrition advice and has helped thousands of readers achieve their health goals through practical dietary guidance.",
+const articlesBySlug = {
+  "is-2-meals-a-day-enough": {
+    category: "Nutrition",
+    title: "Is 2 Meals A Day Enough? Everything You Should Know",
+    subtitle: "Discover the science behind meal frequency and how it affects your metabolism, energy levels, and overall health.",
+    author: {
+      name: "Shadrack Korir",
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+      role: "Health & Nutrition Writer",
+      bio: "Shadrack is a certified nutritionist with over 8 years of experience in health journalism. He specializes in evidence-based nutrition advice and has helped thousands of readers achieve their health goals through practical dietary guidance.",
+    },
+    reviewer: {
+      name: "Kristen Fleming, RD",
+      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
+      credentials: "Registered Dietitian",
+    },
+    date: "January 9, 2026",
+    readTime: "8 min read",
+    views: 4521,
+    image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&h=600&fit=crop",
+    content: [
+      {
+        type: "paragraph",
+        text: "The question of how many meals you should eat per day has been debated for decades. While traditional wisdom suggests three square meals, many people are now experimenting with eating just two meals a day. But is this approach healthy, and can it help you achieve your fitness goals?"
+      },
+      {
+        type: "heading",
+        text: "Understanding Meal Frequency"
+      },
+      {
+        type: "paragraph",
+        text: "Meal frequency refers to how often you eat throughout the day. The concept has evolved significantly over the years, with various eating patterns gaining popularity, from the classic three meals to six small meals, and more recently, intermittent fasting approaches that often involve eating just two meals."
+      },
+      {
+        type: "paragraph",
+        text: "Research suggests that the total amount of calories and nutrients you consume matters more than how you distribute them throughout the day. However, meal timing can affect factors like hunger levels, energy, and adherence to your diet."
+      },
+      {
+        type: "heading",
+        text: "Benefits of Eating Two Meals a Day"
+      },
+      {
+        type: "list",
+        items: [
+          "Simplified meal planning and preparation",
+          "Potential benefits for blood sugar regulation",
+          "May support intermittent fasting goals",
+          "Can help reduce overall calorie intake",
+          "More time between meals for proper digestion"
+        ]
+      },
+      {
+        type: "paragraph",
+        text: "Many people find that eating two larger meals helps them feel more satisfied compared to eating smaller, more frequent meals. This can be particularly beneficial for those who struggle with portion control or constant snacking."
+      },
+      {
+        type: "heading",
+        text: "Potential Drawbacks to Consider"
+      },
+      {
+        type: "paragraph",
+        text: "While two meals a day can work for many people, it's not suitable for everyone. Athletes with high energy demands, pregnant women, people with certain medical conditions, and those prone to blood sugar fluctuations may need more frequent eating."
+      },
+      {
+        type: "quote",
+        text: "The best eating pattern is one that you can maintain consistently while meeting your nutritional needs and supporting your lifestyle.",
+        author: "Dr. Sarah Mitchell, Nutritional Scientist"
+      },
+      {
+        type: "heading",
+        text: "How to Make Two Meals Work"
+      },
+      {
+        type: "paragraph",
+        text: "If you decide to try eating two meals a day, it's crucial to ensure each meal is nutritionally complete. Focus on including adequate protein, healthy fats, complex carbohydrates, and plenty of vegetables. Stay hydrated between meals, and listen to your body's hunger and fullness cues."
+      },
+      {
+        type: "paragraph",
+        text: "Consider working with a registered dietitian to ensure you're meeting all your nutritional needs, especially if you have specific health goals or conditions to manage."
+      },
+      {
+        type: "heading",
+        text: "The Bottom Line"
+      },
+      {
+        type: "paragraph",
+        text: "Eating two meals a day can be a viable approach for many people, but it's not a one-size-fits-all solution. The key is finding an eating pattern that supports your health goals, fits your lifestyle, and provides adequate nutrition. Whether you eat two, three, or more meals, focus on the quality of your food choices and total daily nutrient intake."
+      }
+    ]
   },
-  reviewer: {
-    name: "Kristen Fleming, RD",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
-    credentials: "Registered Dietitian",
-  },
-  date: "January 9, 2026",
-  readTime: "8 min read",
-  views: 4521,
-  image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&h=600&fit=crop",
-  content: [
-    {
-      type: "paragraph",
-      text: "The question of how many meals you should eat per day has been debated for decades. While traditional wisdom suggests three square meals, many people are now experimenting with eating just two meals a day. But is this approach healthy, and can it help you achieve your fitness goals?"
+  "calisthenics-bodyweight-training-guide": {
+    category: "Workouts",
+    title: "What Does Calisthenics Mean? Your Simple Guide to Bodyweight Training",
+    subtitle: "A clear, no-nonsense explanation of calisthenics, why it works, and how to start with the basics.",
+    author: {
+      name: "Jordan Lee",
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
+      role: "Fitness Writer",
+      bio: "Jordan is a fitness writer who focuses on accessible training methods and sustainable routines. They love breaking down exercise science into practical, everyday advice.",
     },
-    {
-      type: "heading",
-      text: "Understanding Meal Frequency"
+    reviewer: {
+      name: "Dr. Nina Patel",
+      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
+      credentials: "Sports Medicine Physician",
     },
-    {
-      type: "paragraph",
-      text: "Meal frequency refers to how often you eat throughout the day. The concept has evolved significantly over the years, with various eating patterns gaining popularity, from the classic three meals to six small meals, and more recently, intermittent fasting approaches that often involve eating just two meals."
-    },
-    {
-      type: "paragraph",
-      text: "Research suggests that the total amount of calories and nutrients you consume matters more than how you distribute them throughout the day. However, meal timing can affect factors like hunger levels, energy, and adherence to your diet."
-    },
-    {
-      type: "heading",
-      text: "Benefits of Eating Two Meals a Day"
-    },
-    {
-      type: "list",
-      items: [
-        "Simplified meal planning and preparation",
-        "Potential benefits for blood sugar regulation",
-        "May support intermittent fasting goals",
-        "Can help reduce overall calorie intake",
-        "More time between meals for proper digestion"
-      ]
-    },
-    {
-      type: "paragraph",
-      text: "Many people find that eating two larger meals helps them feel more satisfied compared to eating smaller, more frequent meals. This can be particularly beneficial for those who struggle with portion control or constant snacking."
-    },
-    {
-      type: "heading",
-      text: "Potential Drawbacks to Consider"
-    },
-    {
-      type: "paragraph",
-      text: "While two meals a day can work for many people, it's not suitable for everyone. Athletes with high energy demands, pregnant women, people with certain medical conditions, and those prone to blood sugar fluctuations may need more frequent eating."
-    },
-    {
-      type: "quote",
-      text: "The best eating pattern is one that you can maintain consistently while meeting your nutritional needs and supporting your lifestyle.",
-      author: "Dr. Sarah Mitchell, Nutritional Scientist"
-    },
-    {
-      type: "heading",
-      text: "How to Make Two Meals Work"
-    },
-    {
-      type: "paragraph",
-      text: "If you decide to try eating two meals a day, it's crucial to ensure each meal is nutritionally complete. Focus on including adequate protein, healthy fats, complex carbohydrates, and plenty of vegetables. Stay hydrated between meals, and listen to your body's hunger and fullness cues."
-    },
-    {
-      type: "paragraph",
-      text: "Consider working with a registered dietitian to ensure you're meeting all your nutritional needs, especially if you have specific health goals or conditions to manage."
-    },
-    {
-      type: "heading",
-      text: "The Bottom Line"
-    },
-    {
-      type: "paragraph",
-      text: "Eating two meals a day can be a viable approach for many people, but it's not a one-size-fits-all solution. The key is finding an eating pattern that supports your health goals, fits your lifestyle, and provides adequate nutrition. Whether you eat two, three, or more meals, focus on the quality of your food choices and total daily nutrient intake."
-    }
-  ]
+    date: "January 10, 2026",
+    readTime: "6 min read",
+    views: 2864,
+    image: "https://images.unsplash.com/photo-1483721310020-03333e577078?w=1200&h=600&fit=crop",
+    content: [
+      {
+        type: "paragraph",
+        text: "Ever wondered what people mean when they talk about calisthenics? You've probably heard the word thrown around at the gym or seen it mentioned in fitness apps, but what exactly is it?"
+      },
+      {
+        type: "paragraph",
+        text: "Let's break it down in a way that actually makes sense."
+      },
+      {
+        type: "heading",
+        text: "The Simple Definition"
+      },
+      {
+        type: "paragraph",
+        text: "Calisthenics is just a fancy word for exercises that use your own body weight as resistance. That's it. No dumbbells, no machines, no monthly gym membership required. Just you and gravity working together to build strength."
+      },
+      {
+        type: "paragraph",
+        text: "Think about exercises like push-ups, squats, lunges, and planks. Those are all calisthenics moves. If you've ever done a burpee (and survived to tell the tale), you've done calisthenics."
+      },
+      {
+        type: "heading",
+        text: "Where Does the Word Come From?"
+      },
+      {
+        type: "paragraph",
+        text: "Here's a fun fact: the word \"calisthenics\" comes from two Greek words – \"kalos\" meaning beauty, and \"sthenos\" meaning strength. So literally, it translates to \"beautiful strength.\" Pretty cool, right?"
+      },
+      {
+        type: "paragraph",
+        text: "The idea has been around for centuries. Ancient Greek warriors used bodyweight exercises to stay in fighting shape. Today, it's having a major comeback because people are realizing you don't need fancy equipment to get fit."
+      },
+      {
+        type: "heading",
+        text: "Why Are People So Into It?"
+      },
+      {
+        type: "list",
+        items: [
+          "It's accessible. You can literally do it anywhere – your living room, a park, a hotel room when you're traveling.",
+          "It's functional. These movements mirror things you do in real life, helping your body move as one connected unit.",
+          "It works your whole body. Even simple moves engage your core, back, and legs along with the primary muscles.",
+          "It grows with you. Start with modifications and progress by adjusting angles, tempo, or range of motion."
+        ]
+      },
+      {
+        type: "heading",
+        text: "What Can You Actually Achieve?"
+      },
+      {
+        type: "paragraph",
+        text: "If you stick with it, calisthenics can help you build legitimate strength, improve your flexibility, and boost your endurance. You'll develop better body control and coordination, plus that lean, athletic look many people aim for."
+      },
+      {
+        type: "paragraph",
+        text: "And here's something people don't always mention — it's empowering to realize your own body is all the equipment you need to get strong."
+      },
+      {
+        type: "heading",
+        text: "Getting Started"
+      },
+      {
+        type: "paragraph",
+        text: "The best part about calisthenics? You probably already know how to do the basic movements. Start with fundamentals like squats, push-ups (on your knees if needed), planks, and lunges. Focus on doing them correctly rather than doing a ton of reps with sloppy form."
+      },
+      {
+        type: "paragraph",
+        text: "As you get comfortable, explore more challenging variations. There's no rush. Consistency beats intensity when you're just starting out."
+      },
+      {
+        type: "heading",
+        text: "The Bottom Line"
+      },
+      {
+        type: "paragraph",
+        text: "Calisthenics is simply using your body weight to exercise. It's not mysterious, it's not exclusive, and you don't need to be an athlete to give it a try. Whether you're looking to build strength, tone up, or just feel better in your own skin, calisthenics offers a practical, no-nonsense approach to fitness."
+      },
+      {
+        type: "paragraph",
+        text: "So next time someone mentions calisthenics, you'll know exactly what they're talking about. Even better — you might just feel inspired to try it yourself."
+      },
+      {
+        type: "paragraph",
+        text: "Ready to start your calisthenics journey? Download the FitRun app for guided bodyweight workouts designed for all fitness levels. No equipment needed, just you and your determination."
+      }
+    ]
+  }
 };
 
 const relatedArticles = [
@@ -177,7 +286,7 @@ const BlogArticle = () => {
   const { lang, setLang } = useLanguage();
   const { slug } = useParams();
 
-  const article = articleData; // In a real app, fetch based on slug
+  const article = articlesBySlug[slug ?? "is-2-meals-a-day-enough"] ?? articlesBySlug["is-2-meals-a-day-enough"];
 
   return (
     <div className="min-h-screen bg-background">
