@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import heroImage from "@/assets/hero-landing.jpg";
@@ -52,17 +52,45 @@ const slides = [
   },
 ];
 
+const AUTOPLAY_INTERVAL = 5000; // 5 seconds
+
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSlide, setActiveSlide] = useState(1);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const goToSlide = useCallback((index: number) => {
+    if (isTransitioning || index === activeSlide) return;
+    setIsTransitioning(true);
+    setActiveSlide(index);
+    setTimeout(() => setIsTransitioning(false), 600);
+  }, [isTransitioning, activeSlide]);
+
+  const nextSlide = useCallback(() => {
+    const next = (activeSlide + 1) % slides.length;
+    goToSlide(next);
+  }, [activeSlide, goToSlide]);
+
+  // Auto-play effect
+  useEffect(() => {
+    if (isMenuOpen) return; // Pause when menu is open
+    
+    const interval = setInterval(nextSlide, AUTOPLAY_INTERVAL);
+    return () => clearInterval(interval);
+  }, [nextSlide, isMenuOpen]);
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${slides[activeSlide].image})` }}
-      />
+      {/* Background Images with Transition */}
+      {slides.map((slide, index) => (
+        <div
+          key={slide.id}
+          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-700 ease-in-out ${
+            index === activeSlide ? "opacity-100 z-[1]" : "opacity-0 z-0"
+          }`}
+          style={{ backgroundImage: `url(${slide.image})` }}
+        />
+      ))}
 
       {/* Header */}
       <header className="absolute top-0 left-0 right-0 z-20 px-6 py-6 md:px-10 lg:px-12">
@@ -112,11 +140,11 @@ const Index = () => {
             {slides.map((slide, index) => (
               <button
                 key={slide.id}
-                onClick={() => setActiveSlide(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-200 ${
+                onClick={() => goToSlide(index)}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                   index === activeSlide
-                    ? "bg-primary-foreground"
-                    : "bg-primary-foreground/40"
+                    ? "bg-primary-foreground scale-110"
+                    : "bg-primary-foreground/40 hover:bg-primary-foreground/60"
                 }`}
                 aria-label={`Slide ${index + 1}`}
               />
@@ -127,13 +155,16 @@ const Index = () => {
         {/* Content Container */}
         <div className="lg:flex lg:items-end lg:justify-between">
           {/* Text Content */}
-          <div className="max-w-2xl animate-slide-up">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-primary-foreground leading-tight mb-6 lg:mb-8">
+          <div className="max-w-2xl">
+            <h1 
+              key={activeSlide}
+              className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-primary-foreground leading-tight mb-6 lg:mb-8 animate-fade-in"
+            >
               {slides[activeSlide].title}
             </h1>
 
             {/* CTA Button */}
-            <button className="rounded-full bg-card px-8 py-4 text-sm font-medium text-foreground transition-all duration-200 hover:bg-card/90">
+            <button className="rounded-full bg-card px-8 py-4 text-sm font-medium text-foreground transition-all duration-200 hover:bg-card/90 hover:scale-105">
               Завантажити
             </button>
           </div>
@@ -143,11 +174,11 @@ const Index = () => {
             {slides.map((slide, index) => (
               <button
                 key={slide.id}
-                onClick={() => setActiveSlide(index)}
-                className={`pagination-dot ${
+                onClick={() => goToSlide(index)}
+                className={`pagination-dot transition-all duration-300 ${
                   index === activeSlide
-                    ? "pagination-dot-active"
-                    : "pagination-dot-inactive"
+                    ? "pagination-dot-active scale-110"
+                    : "pagination-dot-inactive hover:scale-105"
                 }`}
                 aria-label={`Slide ${index + 1}`}
               >
