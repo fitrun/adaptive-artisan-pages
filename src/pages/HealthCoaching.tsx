@@ -4,6 +4,7 @@ import heroImage from "@/assets/hero-landing.jpg";
 import { AnimatedSection } from "@/hooks/use-scroll-animation";
 import { LocalizedLink } from "@/components/LocalizedLink";
 import { useLanguage, SUPPORTED_LANGUAGES, Language } from "@/hooks/use-language";
+import { PlaceholderLink } from "@/components/PlaceholderLink";
 
 const navLinks = [
   { label: "Products", href: "/products" },
@@ -529,7 +530,7 @@ const HealthCoaching = () => {
                 </div>
                 <div className="h-px bg-border mb-4" />
                 <p className="text-muted-foreground mb-4">{item.quote}</p>
-                <a href="#" className="text-foreground font-medium underline">Read Now</a>
+                <PlaceholderLink className="text-foreground font-medium underline">Read Now</PlaceholderLink>
               </div>
             ))}
           </div>
@@ -614,13 +615,12 @@ const HealthCoaching = () => {
             <div>
               <div className="flex gap-3 mb-6">
                 {["instagram", "tiktok", "facebook", "x", "linkedin"].map((social) => (
-                  <a
+                  <PlaceholderLink
                     key={social}
-                    href="#"
                     className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors"
                   >
                     <span className="sr-only">{social}</span>
-                  </a>
+                  </PlaceholderLink>
                 ))}
               </div>
               <p className="text-sm font-medium text-foreground mb-2">© 2026. FitRun.</p>
@@ -630,34 +630,33 @@ const HealthCoaching = () => {
             </div>
             
             <div className="space-y-3">
-              <a href="#" className="block text-foreground hover:text-muted-foreground transition-colors">Products</a>
-              <a href="#" className="block text-foreground hover:text-muted-foreground transition-colors">For Business</a>
-              <a href="#" className="block text-foreground hover:text-muted-foreground transition-colors">Affiliate Program</a>
+              <PlaceholderLink className="block text-foreground hover:text-muted-foreground transition-colors">Products</PlaceholderLink>
+              <PlaceholderLink className="block text-foreground hover:text-muted-foreground transition-colors">For Business</PlaceholderLink>
+              <PlaceholderLink className="block text-foreground hover:text-muted-foreground transition-colors">Affiliate Program</PlaceholderLink>
             </div>
             
             <div className="space-y-3">
-              <a href="#" className="block text-foreground hover:text-muted-foreground transition-colors">About Us</a>
-              <a href="#" className="block text-foreground hover:text-muted-foreground transition-colors">Careers</a>
-              <a href="#" className="block text-foreground hover:text-muted-foreground transition-colors">Blog</a>
+              <PlaceholderLink className="block text-foreground hover:text-muted-foreground transition-colors">About Us</PlaceholderLink>
+              <PlaceholderLink className="block text-foreground hover:text-muted-foreground transition-colors">Careers</PlaceholderLink>
+              <PlaceholderLink className="block text-foreground hover:text-muted-foreground transition-colors">Blog</PlaceholderLink>
             </div>
             
             <div className="space-y-3">
-              <a href="#" className="block text-foreground hover:text-muted-foreground transition-colors">Contacts</a>
-              <a href="#" className="block text-foreground hover:text-muted-foreground transition-colors">Brand Assets</a>
+              <PlaceholderLink className="block text-foreground hover:text-muted-foreground transition-colors">Contacts</PlaceholderLink>
+              <PlaceholderLink className="block text-foreground hover:text-muted-foreground transition-colors">Brand Assets</PlaceholderLink>
             </div>
           </div>
           
           <div className="border-t border-border pt-6">
             <div className="flex flex-wrap gap-4 text-sm">
-              <a href="#" className="text-destructive hover:text-destructive/80 transition-colors">Need Help?</a>
+              <PlaceholderLink className="text-destructive hover:text-destructive/80 transition-colors">Need Help?</PlaceholderLink>
               {footerLinks.map((link) => (
-                <a
+                <PlaceholderLink
                   key={link.label}
-                  href={link.href}
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {link.label}
-                </a>
+                </PlaceholderLink>
               ))}
             </div>
           </div>

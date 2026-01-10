@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X, ArrowRight, ArrowLeft } from "lucide-react";
 import { LocalizedLink } from "@/components/LocalizedLink";
+import { PlaceholderLink } from "@/components/PlaceholderLink";
 import { useLanguage, SUPPORTED_LANGUAGES, Language } from "@/hooks/use-language";
 import { BlogNavigation } from "@/components/BlogNavigation";
 import { AnimatedSection } from "@/hooks/use-scroll-animation";
@@ -218,9 +219,9 @@ const BlogCategory = () => {
           </div>
           
           <div className="flex items-center gap-4">
-            <a href="#" className="hidden md:block text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <PlaceholderLink className="hidden md:block text-sm text-muted-foreground hover:text-foreground transition-colors">
               Need Help?
-            </a>
+            </PlaceholderLink>
             
             <LocalizedLink
               to="/login"
@@ -335,13 +336,12 @@ const BlogCategory = () => {
           <div className="flex flex-wrap items-center justify-between gap-8 pb-8 border-b border-border">
             <div className="flex flex-wrap items-center gap-6">
               {socialLinks.map((link) => (
-                <a
+                <PlaceholderLink
                   key={link.label}
-                  href={link.href}
                   className="text-sm font-medium text-foreground hover:text-muted-foreground transition-colors"
                 >
                   {link.label}
-                </a>
+                </PlaceholderLink>
               ))}
             </div>
             <div className="flex flex-wrap items-center gap-6">
@@ -367,13 +367,12 @@ const BlogCategory = () => {
             </div>
             <div className="flex flex-wrap items-center gap-6">
               {footerBottomLinks.map((link) => (
-                <a
+                <PlaceholderLink
                   key={link.label}
-                  href={link.href}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {link.label}
-                </a>
+                </PlaceholderLink>
               ))}
             </div>
           </div>
