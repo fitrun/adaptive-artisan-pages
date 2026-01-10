@@ -103,7 +103,7 @@ const SubMenu = ({ items, level = 1 }: SubMenuProps) => {
 
   return (
     <div
-      className={`absolute bg-background border border-border shadow-lg rounded-lg py-2 min-w-[200px] z-50 ${
+      className={`absolute bg-background shadow-lg rounded-3xl py-2 min-w-[200px] z-50 ${
         level === 1 ? "top-full left-0 mt-2" : "top-0 left-full ml-1"
       }`}
     >
