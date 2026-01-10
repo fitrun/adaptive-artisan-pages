@@ -16,6 +16,13 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// Helper component for redirecting paths with subpaths
+const RedirectWithPath = ({ basePath }: { basePath: string }) => {
+  const location = useLocation();
+  const subPath = location.pathname.replace(basePath, "");
+  return <Navigate to={`/${detectBrowserLanguage()}${basePath}${subPath}`} replace />;
+};
+
 const AnimatedRoutes = () => {
   const location = useLocation();
   
@@ -24,6 +31,14 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         {/* Redirect root to detected browser language */}
         <Route path="/" element={<Navigate to={`/${detectBrowserLanguage()}`} replace />} />
+        
+        {/* Redirects for routes without language prefix */}
+        <Route path="/login" element={<Navigate to={`/${detectBrowserLanguage()}/login`} replace />} />
+        <Route path="/products" element={<Navigate to={`/${detectBrowserLanguage()}/products`} replace />} />
+        <Route path="/products/health-coaching" element={<Navigate to={`/${detectBrowserLanguage()}/products/health-coaching`} replace />} />
+        <Route path="/products/mental-health" element={<Navigate to={`/${detectBrowserLanguage()}/products/mental-health`} replace />} />
+        <Route path="/blog" element={<Navigate to={`/${detectBrowserLanguage()}/blog`} replace />} />
+        <Route path="/blog/*" element={<RedirectWithPath basePath="/blog" />} />
         
         {/* Language-prefixed routes */}
         <Route path="/:lang" element={<LanguageProvider><PageTransition><Index /></PageTransition></LanguageProvider>} />
@@ -35,7 +50,7 @@ const AnimatedRoutes = () => {
         <Route path="/:lang/blog/*" element={<LanguageProvider><PageTransition><Blog /></PageTransition></LanguageProvider>} />
         
         {/* Catch-all for 404 */}
-        <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+        <Route path="*" element={<LanguageProvider><PageTransition><NotFound /></PageTransition></LanguageProvider>} />
       </Routes>
     </AnimatePresence>
   );
