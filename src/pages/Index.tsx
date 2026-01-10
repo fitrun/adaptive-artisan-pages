@@ -54,10 +54,17 @@ const slides = [
 
 const AUTOPLAY_INTERVAL = 5000; // 5 seconds
 
+const languages = [
+  { code: "EN", label: "English" },
+  { code: "UA", label: "Українська" },
+];
+
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [currentLang, setCurrentLang] = useState("EN");
+  const [isLangHovered, setIsLangHovered] = useState(false);
 
   const goToSlide = useCallback((index: number) => {
     if (isTransitioning || index === activeSlide) return;
@@ -118,6 +125,51 @@ const Index = () => {
             >
               Увійти
             </Link>
+
+            {/* Language Selector */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setIsLangHovered(true)}
+              onMouseLeave={() => setIsLangHovered(false)}
+            >
+              <button className="flex items-center justify-center text-sm font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-200 px-2 py-1">
+                {currentLang}
+              </button>
+              
+              {/* Dropdown */}
+              <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 transition-all duration-300 ${
+                isLangHovered 
+                  ? "opacity-100 translate-y-0 pointer-events-auto" 
+                  : "opacity-0 -translate-y-2 pointer-events-none"
+              }`}>
+                <div className="flex flex-col items-center">
+                  {/* Divider line */}
+                  <div className={`w-5 h-px bg-primary-foreground/40 mb-3 transition-all duration-300 delay-100 ${
+                    isLangHovered ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
+                  }`} />
+                  
+                  {/* Other languages */}
+                  <div className="flex flex-col items-center gap-2">
+                    {languages
+                      .filter(lang => lang.code !== currentLang)
+                      .map((lang, index) => (
+                        <button
+                          key={lang.code}
+                          onClick={() => setCurrentLang(lang.code)}
+                          className={`text-sm font-medium text-primary-foreground/50 hover:text-primary-foreground transition-all duration-300 ${
+                            isLangHovered 
+                              ? "opacity-100 translate-y-0" 
+                              : "opacity-0 -translate-y-2"
+                          }`}
+                          style={{ transitionDelay: `${(index + 1) * 75}ms` }}
+                        >
+                          {lang.code}
+                        </button>
+                      ))}
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Menu Button */}
             <button
