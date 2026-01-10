@@ -109,7 +109,7 @@ const Index = () => {
         <nav className="flex items-center justify-between">
           {/* Logo */}
           <LocalizedLink to="" className="text-xl md:text-2xl font-bold text-primary-foreground">
-            BetterMe
+            FitRun
           </LocalizedLink>
 
           {/* Desktop Navigation */}
