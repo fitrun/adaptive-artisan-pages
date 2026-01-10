@@ -76,9 +76,9 @@ const mentalHealthPrograms = [
 ];
 
 const stats = [
-  { value: "20", unit: "million", description: "BetterMe followers on social media" },
+  { value: "20", unit: "million", description: "FitRun followers on social media" },
   { value: "65", unit: "million", description: "People are working out with Wall Pilates" },
-  { value: "1.5", unit: "million", description: "Ratings of BetterMe: Health Coaching" },
+  { value: "1.5", unit: "million", description: "Ratings of FitRun: Health Coaching" },
   { value: "50+", unit: "", description: "Countries with active users" },
 ];
 
@@ -107,19 +107,19 @@ const worldCards = [
   {
     id: 1,
     tag: "Fitness Essentials",
-    title: "BetterMe Store",
+    title: "FitRun Store",
     image: heroImage,
   },
   {
     id: 2,
     tag: "Corporate Wellness",
-    title: "BetterMe For Business",
+    title: "FitRun For Business",
     image: heroImage,
   },
   {
     id: 3,
     tag: "Fitness Tracker",
-    title: "BetterMe Band",
+    title: "FitRun Band",
     image: heroImage,
   },
 ];
@@ -162,7 +162,7 @@ const Products = () => {
         <nav className="flex items-center justify-between max-w-7xl mx-auto">
           {/* Logo */}
           <LocalizedLink to="" className="text-xl md:text-2xl font-bold text-foreground">
-            BetterMe
+            FitRun
           </LocalizedLink>
 
           {/* Desktop Navigation */}
@@ -251,7 +251,7 @@ const Products = () => {
         
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
           <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium text-primary-foreground italic mb-6">
-            BetterMe:<br />Health Coaching
+            FitRun:<br />Health Coaching
           </h1>
           <p className="text-lg md:text-xl text-primary-foreground/90 mb-10 max-w-2xl">
             Effective Workouts. Balanced Meal Plans. Motivating Challenges.
@@ -274,7 +274,7 @@ const Products = () => {
       <AnimatedSection className="py-16 md:py-24 px-6 bg-background" animation="fade-up">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground text-center mb-12 md:mb-16">
-            The most popular programs<br />in BetterMe: Health Coaching
+            The most popular programs<br />in FitRun: Health Coaching
           </h2>
           
           <div className="space-y-6">
@@ -318,7 +318,7 @@ const Products = () => {
             
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-primary-foreground italic mb-6">
-                BetterMe:<br />Mental Health
+                FitRun:<br />Mental Health
               </h2>
               <p className="text-lg md:text-xl text-primary-foreground/90 mb-10 max-w-2xl">
                 Guided Meditations. Breathing Exercises. Sleeping Sounds.
@@ -343,7 +343,7 @@ const Products = () => {
       <AnimatedSection className="py-16 md:py-24 px-6 bg-primary" animation="fade-up">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-primary-foreground text-center mb-12 md:mb-16">
-            The most popular programs<br />in BetterMe: Mental Health
+            The most popular programs<br />in FitRun: Mental Health
           </h2>
           
           <div className="grid md:grid-cols-2 gap-6">
@@ -379,7 +379,7 @@ const Products = () => {
       <AnimatedSection className="py-16 md:py-24 px-6 bg-secondary" animation="slide-left">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground mb-12 md:mb-16">
-            Join the millions creating<br />happiness with BetterMe
+            Join the millions creating<br />happiness with FitRun
           </h2>
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
@@ -443,11 +443,11 @@ const Products = () => {
         </div>
       </AnimatedSection>
 
-      {/* Meet the BetterMe World */}
+      {/* Meet the FitRun World */}
       <AnimatedSection className="py-16 md:py-24 px-6 bg-background" animation="slide-right">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground text-center mb-12 md:mb-16">
-            Meet the BetterMe World
+            Meet the FitRun World
           </h2>
           
           <div className="grid md:grid-cols-3 gap-6">
@@ -500,10 +500,10 @@ const Products = () => {
                   </a>
                 ))}
               </div>
-              <p className="text-sm text-foreground mb-2">© 2026. BetterMe.</p>
+              <p className="text-sm text-foreground mb-2">© 2026. FitRun.</p>
               <p className="text-xs text-muted-foreground">
                 Our website services, content and products are for informational purposes only. 
-                BetterMe does not provide medical advice, diagnosis, or treatment
+                FitRun does not provide medical advice, diagnosis, or treatment
               </p>
             </div>
             
