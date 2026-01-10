@@ -12,6 +12,7 @@ import Products from "./pages/Products";
 import HealthCoaching from "./pages/HealthCoaching";
 import MentalHealth from "./pages/MentalHealth";
 import Blog from "./pages/Blog";
+import BlogArticle from "./pages/BlogArticle";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -47,6 +48,7 @@ const AnimatedRoutes = () => {
         <Route path="/:lang/products/health-coaching" element={<LanguageProvider><PageTransition><HealthCoaching /></PageTransition></LanguageProvider>} />
         <Route path="/:lang/products/mental-health" element={<LanguageProvider><PageTransition><MentalHealth /></PageTransition></LanguageProvider>} />
         <Route path="/:lang/blog" element={<LanguageProvider><PageTransition><Blog /></PageTransition></LanguageProvider>} />
+        <Route path="/:lang/blog/article/:slug" element={<LanguageProvider><PageTransition><BlogArticle /></PageTransition></LanguageProvider>} />
         <Route path="/:lang/blog/*" element={<LanguageProvider><PageTransition><Blog /></PageTransition></LanguageProvider>} />
         
         {/* Catch-all for 404 */}
