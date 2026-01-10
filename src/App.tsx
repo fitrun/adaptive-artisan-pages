@@ -48,7 +48,7 @@ const AnimatedRoutes = () => {
         <Route path="/:lang/products/health-coaching" element={<LanguageProvider><PageTransition><HealthCoaching /></PageTransition></LanguageProvider>} />
         <Route path="/:lang/products/mental-health" element={<LanguageProvider><PageTransition><MentalHealth /></PageTransition></LanguageProvider>} />
         <Route path="/:lang/blog" element={<LanguageProvider><PageTransition><Blog /></PageTransition></LanguageProvider>} />
-        <Route path="/:lang/blog/article/:slug" element={<LanguageProvider><PageTransition><BlogArticle /></PageTransition></LanguageProvider>} />
+        <Route path="/:lang/article/:slug" element={<LanguageProvider><PageTransition><BlogArticle /></PageTransition></LanguageProvider>} />
         <Route path="/:lang/blog/*" element={<LanguageProvider><PageTransition><Blog /></PageTransition></LanguageProvider>} />
         
         {/* Catch-all for 404 */}

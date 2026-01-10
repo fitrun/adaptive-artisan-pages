@@ -38,6 +38,7 @@ const categories = [
 
 const featuredArticles = [
   {
+    slug: "high-protein-lunch-box-ideas",
     category: "Meal Ideas",
     title: "High Protein Lunch Box Ideas: 5 Quick Meals For On-The-Go",
     author: "Maja Petrushevska",
@@ -47,6 +48,7 @@ const featuredArticles = [
     image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=400&fit=crop",
   },
   {
+    slug: "is-2-meals-a-day-enough",
     category: "Nutrition",
     title: "Is 2 Meals A Day Enough? Everything You Should Know",
     author: "Shadrack Korir",
@@ -142,7 +144,11 @@ const Blog = () => {
           
           <div className="grid md:grid-cols-2 gap-8">
             {featuredArticles.map((article, index) => (
-              <article key={index} className="group cursor-pointer">
+              <LocalizedLink 
+                key={index} 
+                to={`/article/${article.slug}`}
+                className="group cursor-pointer block"
+              >
                 <div className="aspect-[4/3] overflow-hidden mb-4">
                   <img
                     src={article.image}
@@ -167,7 +173,7 @@ const Blog = () => {
                   <div className="w-6 h-6 rounded-full bg-muted" />
                   <span>Reviewed by <span className="underline">{article.reviewer}</span></span>
                 </div>
-              </article>
+              </LocalizedLink>
             ))}
           </div>
         </div>

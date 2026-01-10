@@ -396,7 +396,7 @@ const BlogArticle = () => {
             {relatedArticles.map((related, index) => (
               <AnimatedSection key={related.slug} animation="fade-up" delay={0.1 * (index + 1)}>
                 <LocalizedLink 
-                  to={`/blog/article/${related.slug}`}
+                  to={`/article/${related.slug}`}
                   className="group block"
                 >
                   <div className="aspect-[4/3] overflow-hidden mb-4">
