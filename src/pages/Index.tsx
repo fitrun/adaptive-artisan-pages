@@ -4,14 +4,14 @@ import { Menu, X } from "lucide-react";
 import heroImage from "@/assets/hero-landing.jpg";
 
 const navLinks = [
-  { label: "Продукти", href: "#" },
+  { label: "Продукти", href: "/products" },
   { label: "Для Бізнесу", href: "#" },
   { label: "Магазин", href: "#" },
   { label: "Політика конфіденційності", href: "#" },
 ];
 
 const menuLinks = [
-  { label: "Продукти", href: "#" },
+  { label: "Продукти", href: "/products" },
   { label: "Магазин", href: "#" },
   { label: "Про нас", href: "#" },
   { label: "Для Бізнесу", href: "#" },
