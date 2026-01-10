@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Menu, X, Star } from "lucide-react";
 import heroImage from "@/assets/hero-landing.jpg";
 import { AnimatedSection } from "@/hooks/use-scroll-animation";
+import { LocalizedLink } from "@/components/LocalizedLink";
+import { useLanguage, SUPPORTED_LANGUAGES, Language } from "@/hooks/use-language";
 
 const navLinks = [
   { label: "Продукти", href: "/products" },
@@ -30,13 +31,13 @@ const footerLinks = [
   { label: "e-Privacy Settings", href: "#" },
 ];
 
-const languages = [
-  { code: "EN", label: "English" },
-  { code: "UA", label: "Українська" },
-  { code: "DE", label: "Deutsch" },
-  { code: "FR", label: "Français" },
-  { code: "ES", label: "Español" },
-];
+const languageLabels: Record<Language, string> = {
+  en: "EN",
+  ua: "UA",
+  de: "DE",
+  fr: "FR",
+  es: "ES",
+};
 
 const healthCoachingPrograms = [
   {
@@ -125,11 +126,11 @@ const worldCards = [
 
 const Products = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState("EN");
   const [isLangHovered, setIsLangHovered] = useState(false);
   const [isMenuLangHovered, setIsMenuLangHovered] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const { lang, setLang } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -160,32 +161,32 @@ const Products = () => {
       }`}>
         <nav className="flex items-center justify-between max-w-7xl mx-auto">
           {/* Logo */}
-          <Link to="/" className="text-xl md:text-2xl font-bold text-foreground">
+          <LocalizedLink to="" className="text-xl md:text-2xl font-bold text-foreground">
             BetterMe
-          </Link>
+          </LocalizedLink>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link 
+              <LocalizedLink 
                 key={link.label} 
-                to={link.href} 
+                to={link.href.startsWith("/") ? link.href.slice(1) : link.href} 
                 className="text-sm font-medium text-foreground hover:text-muted-foreground transition-colors duration-200"
               >
                 {link.label}
-              </Link>
+              </LocalizedLink>
             ))}
           </div>
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-3">
             {/* Login Button */}
-            <Link
-              to="/login"
+            <LocalizedLink
+              to="login"
               className="hidden md:flex items-center justify-center rounded-full border border-border bg-transparent px-8 py-3 text-sm font-medium text-foreground transition-all duration-200 hover:bg-muted"
             >
               Увійти
-            </Link>
+            </LocalizedLink>
 
             {/* Language Selector */}
             <div 
@@ -194,7 +195,7 @@ const Products = () => {
               onMouseLeave={() => setIsLangHovered(false)}
             >
               <button className="flex items-center justify-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 px-2 py-1">
-                {currentLang}
+                {languageLabels[lang]}
               </button>
               
               <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 transition-all duration-300 ${
@@ -207,12 +208,12 @@ const Products = () => {
                     isLangHovered ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
                   }`} />
                   <div className="flex flex-col items-center gap-2">
-                    {languages
-                      .filter(lang => lang.code !== currentLang)
-                      .map((lang, index) => (
+                    {SUPPORTED_LANGUAGES
+                      .filter(l => l !== lang)
+                      .map((l, index) => (
                         <button
-                          key={lang.code}
-                          onClick={() => setCurrentLang(lang.code)}
+                          key={l}
+                          onClick={() => setLang(l)}
                           className={`text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 ${
                             isLangHovered 
                               ? "opacity-100 translate-y-0" 
@@ -220,7 +221,7 @@ const Products = () => {
                           }`}
                           style={{ transitionDelay: `${(index + 1) * 75}ms` }}
                         >
-                          {lang.code}
+                          {languageLabels[l]}
                         </button>
                       ))}
                   </div>
@@ -259,12 +260,12 @@ const Products = () => {
             <button className="rounded-full bg-card px-10 py-4 text-sm font-medium text-foreground transition-all duration-200 hover:bg-card/90 hover:scale-105">
               Download
             </button>
-            <Link 
-              to="/products/health-coaching"
+            <LocalizedLink 
+              to="products/health-coaching"
               className="rounded-full border border-primary-foreground/50 bg-transparent px-10 py-4 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary-foreground/10"
             >
               Learn More
-            </Link>
+            </LocalizedLink>
           </div>
         </div>
       </section>
@@ -326,12 +327,12 @@ const Products = () => {
                 <button className="rounded-full bg-card px-10 py-4 text-sm font-medium text-foreground transition-all duration-200 hover:bg-card/90 hover:scale-105">
                   Download
                 </button>
-                <Link 
-                  to="/products/mental-health"
+                <LocalizedLink 
+                  to="products/mental-health"
                   className="rounded-full border border-primary-foreground/50 bg-transparent px-10 py-4 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary-foreground/10"
                 >
                   Learn More
-                </Link>
+                </LocalizedLink>
               </div>
             </div>
           </div>
@@ -565,12 +566,12 @@ const Products = () => {
             <div className="w-1/2 bg-card flex flex-col">
               <div className="flex items-center justify-end gap-4 px-8 py-6">
                 <span className="text-sm text-muted-foreground">Потрібна допомога?</span>
-                <Link
-                  to="/login"
+                <LocalizedLink
+                  to="login"
                   className="rounded-full border border-border px-8 py-3 text-sm font-medium text-foreground transition-all duration-200 hover:bg-muted"
                 >
                   Увійти
-                </Link>
+                </LocalizedLink>
                 <button
                   onClick={() => setIsMenuOpen(false)}
                   className="flex h-12 w-12 items-center justify-center rounded-full border border-border text-foreground transition-all duration-200 hover:bg-muted"
@@ -582,14 +583,14 @@ const Products = () => {
               <div className="flex-1 flex flex-col justify-center px-8 lg:px-16">
                 <nav className="space-y-4">
                   {menuLinks.map((link) => (
-                    <Link
+                    <LocalizedLink
                       key={link.label}
-                      to={link.href}
+                      to={link.href.startsWith("/") ? link.href.slice(1) : link.href}
                       className="block text-2xl lg:text-3xl font-medium text-foreground hover:text-muted-foreground transition-colors duration-200"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {link.label}
-                    </Link>
+                    </LocalizedLink>
                   ))}
                 </nav>
               </div>
@@ -618,7 +619,7 @@ const Products = () => {
                     onMouseLeave={() => setIsMenuLangHovered(false)}
                   >
                     <button className="flex items-center justify-center text-sm font-medium text-foreground hover:text-muted-foreground transition-colors duration-200 px-2 py-1">
-                      {currentLang}
+                      {languageLabels[lang]}
                     </button>
                     
                     <div className={`absolute bottom-full left-1/2 -translate-x-1/2 pb-2 transition-all duration-300 ${
@@ -628,20 +629,20 @@ const Products = () => {
                     }`}>
                       <div className="flex flex-col items-center">
                         <div className="flex flex-col items-center gap-2 mb-3">
-                          {languages
-                            .filter(lang => lang.code !== currentLang)
-                            .map((lang, index) => (
+                          {SUPPORTED_LANGUAGES
+                            .filter(l => l !== lang)
+                            .map((l, index) => (
                               <button
-                                key={lang.code}
-                                onClick={() => setCurrentLang(lang.code)}
+                                key={l}
+                                onClick={() => setLang(l)}
                                 className={`text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 ${
                                   isMenuLangHovered 
                                     ? "opacity-100 translate-y-0" 
                                     : "opacity-0 translate-y-2"
                                 }`}
-                                style={{ transitionDelay: `${(languages.length - 2 - index) * 50}ms` }}
+                                style={{ transitionDelay: `${(SUPPORTED_LANGUAGES.length - 2 - index) * 50}ms` }}
                               >
-                                {lang.code}
+                                {languageLabels[l]}
                               </button>
                             ))}
                         </div>
@@ -661,12 +662,12 @@ const Products = () => {
             <div className="flex items-center justify-between px-6 py-6">
               <span className="text-sm text-muted-foreground">Потрібна допомога?</span>
               <div className="flex items-center gap-3">
-                <Link
-                  to="/login"
+                <LocalizedLink
+                  to="login"
                   className="rounded-full border border-border px-6 py-2.5 text-sm font-medium text-foreground transition-all duration-200 hover:bg-muted"
                 >
                   Увійти
-                </Link>
+                </LocalizedLink>
                 <button
                   onClick={() => setIsMenuOpen(false)}
                   className="flex h-12 w-12 items-center justify-center rounded-full border border-border text-foreground transition-all duration-200 hover:bg-muted"
@@ -679,14 +680,14 @@ const Products = () => {
             <div className="flex-1 flex flex-col justify-center px-6">
               <nav className="space-y-3">
                 {menuLinks.map((link) => (
-                  <Link
+                  <LocalizedLink
                     key={link.label}
-                    to={link.href}
+                    to={link.href.startsWith("/") ? link.href.slice(1) : link.href}
                     className="block text-2xl font-medium text-foreground hover:text-muted-foreground transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {link.label}
-                  </Link>
+                  </LocalizedLink>
                 ))}
               </nav>
             </div>

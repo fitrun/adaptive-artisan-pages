@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Menu, X, ChevronLeft, ChevronRight, Check } from "lucide-react";
 import heroImage from "@/assets/hero-landing.jpg";
 import { AnimatedSection } from "@/hooks/use-scroll-animation";
+import { LocalizedLink } from "@/components/LocalizedLink";
+import { useLanguage, SUPPORTED_LANGUAGES, Language } from "@/hooks/use-language";
 
 const navLinks = [
   { label: "Products", href: "/products" },
@@ -30,13 +31,13 @@ const footerLinks = [
   { label: "e-Privacy Settings", href: "#" },
 ];
 
-const languages = [
-  { code: "EN", label: "English" },
-  { code: "UA", label: "Українська" },
-  { code: "DE", label: "Deutsch" },
-  { code: "FR", label: "Français" },
-  { code: "ES", label: "Español" },
-];
+const languageLabels: Record<Language, string> = {
+  en: "EN",
+  ua: "UA",
+  de: "DE",
+  fr: "FR",
+  es: "ES",
+};
 
 const appFeatures = [
   "4000+ diverse home workouts",
@@ -130,13 +131,13 @@ const featuredIn = [
 
 const HealthCoaching = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState("EN");
   const [isLangHovered, setIsLangHovered] = useState(false);
   const [isMenuLangHovered, setIsMenuLangHovered] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [currentCoach, setCurrentCoach] = useState(0);
   const [currentFeature, setCurrentFeature] = useState(0);
+  const { lang, setLang } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -169,29 +170,29 @@ const HealthCoaching = () => {
         isHeaderVisible ? "translate-y-0" : "-translate-y-full"
       }`}>
         <nav className="flex items-center justify-between max-w-7xl mx-auto">
-          <Link to="/" className="text-xl md:text-2xl font-bold text-foreground">
+          <LocalizedLink to="" className="text-xl md:text-2xl font-bold text-foreground">
             BetterMe
-          </Link>
+          </LocalizedLink>
 
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link 
+              <LocalizedLink 
                 key={link.label} 
-                to={link.href} 
+                to={link.href.startsWith("/") ? link.href.slice(1) : link.href} 
                 className="text-sm font-medium text-foreground hover:text-muted-foreground transition-colors duration-200"
               >
                 {link.label}
-              </Link>
+              </LocalizedLink>
             ))}
           </div>
 
           <div className="flex items-center gap-3">
-            <Link
-              to="/login"
+            <LocalizedLink
+              to="login"
               className="hidden md:flex items-center justify-center rounded-full border border-border bg-transparent px-8 py-3 text-sm font-medium text-foreground transition-all duration-200 hover:bg-muted"
             >
               Log in
-            </Link>
+            </LocalizedLink>
 
             <div 
               className="relative"
@@ -199,7 +200,7 @@ const HealthCoaching = () => {
               onMouseLeave={() => setIsLangHovered(false)}
             >
               <button className="flex items-center justify-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 px-2 py-1">
-                {currentLang}
+                {languageLabels[lang]}
               </button>
               
               <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 transition-all duration-300 ${
@@ -212,12 +213,12 @@ const HealthCoaching = () => {
                     isLangHovered ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
                   }`} />
                   <div className="flex flex-col items-center gap-2">
-                    {languages
-                      .filter(lang => lang.code !== currentLang)
-                      .map((lang, index) => (
+                    {SUPPORTED_LANGUAGES
+                      .filter(l => l !== lang)
+                      .map((l, index) => (
                         <button
-                          key={lang.code}
-                          onClick={() => setCurrentLang(lang.code)}
+                          key={l}
+                          onClick={() => setLang(l)}
                           className={`text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 ${
                             isLangHovered 
                               ? "opacity-100 translate-y-0" 
@@ -225,7 +226,7 @@ const HealthCoaching = () => {
                           }`}
                           style={{ transitionDelay: `${(index + 1) * 75}ms` }}
                         >
-                          {lang.code}
+                          {languageLabels[l]}
                         </button>
                       ))}
                   </div>
@@ -671,9 +672,9 @@ const HealthCoaching = () => {
       >
         <div className="flex flex-col h-full px-6 py-6 md:px-10 lg:px-12">
           <div className="flex items-center justify-between mb-12">
-            <Link to="/" className="text-xl md:text-2xl font-bold text-foreground">
+            <LocalizedLink to="" className="text-xl md:text-2xl font-bold text-foreground">
               BetterMe
-            </Link>
+            </LocalizedLink>
             
             <div className="flex items-center gap-3">
               <div 
@@ -682,7 +683,7 @@ const HealthCoaching = () => {
                 onMouseLeave={() => setIsMenuLangHovered(false)}
               >
                 <button className="flex items-center justify-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 px-2 py-1">
-                  {currentLang}
+                  {languageLabels[lang]}
                 </button>
                 
                 <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 transition-all duration-300 ${
@@ -695,12 +696,12 @@ const HealthCoaching = () => {
                       isMenuLangHovered ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
                     }`} />
                     <div className="flex flex-col items-center gap-2">
-                      {languages
-                        .filter(lang => lang.code !== currentLang)
-                        .map((lang, index) => (
+                      {SUPPORTED_LANGUAGES
+                        .filter(l => l !== lang)
+                        .map((l, index) => (
                           <button
-                            key={lang.code}
-                            onClick={() => setCurrentLang(lang.code)}
+                            key={l}
+                            onClick={() => setLang(l)}
                             className={`text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 ${
                               isMenuLangHovered 
                                 ? "opacity-100 translate-y-0" 
@@ -708,7 +709,7 @@ const HealthCoaching = () => {
                             }`}
                             style={{ transitionDelay: `${(index + 1) * 75}ms` }}
                           >
-                            {lang.code}
+                            {languageLabels[l]}
                           </button>
                         ))}
                     </div>
@@ -730,8 +731,8 @@ const HealthCoaching = () => {
             <ul className="space-y-4">
               {menuLinks.map((link, index) => (
                 <li key={link.label}>
-                  <Link
-                    to={link.href}
+                  <LocalizedLink
+                    to={link.href.startsWith("/") ? link.href.slice(1) : link.href}
                     onClick={() => setIsMenuOpen(false)}
                     className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground hover:text-muted-foreground transition-colors duration-200 block"
                     style={{
@@ -739,20 +740,20 @@ const HealthCoaching = () => {
                     }}
                   >
                     {link.label}
-                  </Link>
+                  </LocalizedLink>
                 </li>
               ))}
             </ul>
           </nav>
           
           <div className="flex items-center justify-between pt-8 border-t border-border">
-            <Link
-              to="/login"
+            <LocalizedLink
+              to="login"
               onClick={() => setIsMenuOpen(false)}
               className="flex items-center justify-center rounded-full border border-border bg-transparent px-8 py-3 text-sm font-medium text-foreground transition-all duration-200 hover:bg-muted"
             >
               Log in
-            </Link>
+            </LocalizedLink>
           </div>
         </div>
       </div>
