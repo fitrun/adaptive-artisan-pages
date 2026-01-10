@@ -19,11 +19,11 @@ const Login = () => {
   return (
     <div className="min-h-screen w-full flex flex-col lg:flex-row">
       {/* Left Side - Image (Desktop/Tablet only) */}
-      <div className="hidden md:block md:w-1/2 relative bg-betterme-light">
+      <div className="hidden md:block md:w-1/2 relative bg-FitRun-light">
         {/* Logo */}
         <div className="absolute top-8 left-8 z-10">
           <LocalizedLink to="/" className="text-xl font-bold text-foreground">
-            BetterMe
+            FitRun
           </LocalizedLink>
         </div>
 
@@ -38,7 +38,7 @@ const Login = () => {
           {/* Large Watermark Text */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <span className="text-[12vw] font-bold text-card/30 whitespace-nowrap select-none">
-              BetterMe
+              FitRun
             </span>
           </div>
         </div>
@@ -47,7 +47,7 @@ const Login = () => {
       {/* Mobile Header */}
       <div className="md:hidden w-full bg-card border-b border-border px-6 py-4">
         <LocalizedLink to="/" className="text-xl font-bold text-foreground flex justify-center">
-          BetterMe
+          FitRun
         </LocalizedLink>
       </div>
 
@@ -70,7 +70,7 @@ const Login = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your Email"
-                  className="input-betterme"
+                  className="input-FitRun"
                   autoComplete="email"
                 />
               </div>
@@ -82,7 +82,7 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
-                  className="input-betterme pr-20"
+                  className="input-FitRun pr-20"
                   autoComplete="current-password"
                 />
                 <button
@@ -97,7 +97,7 @@ const Login = () => {
               {/* Forgot Password Link */}
               <div className="text-right">
                 <PlaceholderLink
-                  className="text-sm font-semibold text-betterme-red hover:opacity-80 transition-opacity uppercase tracking-wide"
+                  className="text-sm font-semibold text-FitRun-red hover:opacity-80 transition-opacity uppercase tracking-wide"
                 >
                   FORGOT YOUR PASSWORD?
                 </PlaceholderLink>
@@ -110,7 +110,7 @@ const Login = () => {
                 className={`w-full rounded-full py-4 text-sm font-semibold uppercase tracking-wide transition-all duration-200 ${
                   isFormValid
                     ? "bg-primary text-primary-foreground hover:opacity-90"
-                    : "bg-betterme-button text-muted-foreground cursor-not-allowed"
+                    : "bg-FitRun-button text-muted-foreground cursor-not-allowed"
                 }`}
               >
                 LOG IN
@@ -121,7 +121,7 @@ const Login = () => {
             <div className="mt-6 text-center">
               <span className="text-sm text-foreground">Don't have an account? </span>
               <PlaceholderLink
-                className="text-sm font-medium text-betterme-red hover:opacity-80 transition-opacity"
+                className="text-sm font-medium text-FitRun-red hover:opacity-80 transition-opacity"
               >
                 Create one now
               </PlaceholderLink>
