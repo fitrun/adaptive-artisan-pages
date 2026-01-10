@@ -98,7 +98,7 @@ const testimonials = [
   },
   {
     id: 3,
-    text: "I've tried many meditation apps, but BetterMe Mental Health truly understands what I need. The personalized recommendations are spot on!",
+    text: "I've tried many meditation apps, but FitRun Mental Health truly understands what I need. The personalized recommendations are spot on!",
     author: "Emily R.",
     date: "Dec 28, 2024",
     isImage: false,
@@ -166,7 +166,7 @@ const MentalHealth = () => {
       }`}>
         <nav className="flex items-center justify-between max-w-7xl mx-auto">
           <LocalizedLink to="" className="text-xl md:text-2xl font-bold text-foreground">
-            BetterMe
+            FitRun
           </LocalizedLink>
 
           <div className="hidden lg:flex items-center gap-8">
@@ -256,7 +256,7 @@ const MentalHealth = () => {
             Find Your Inner Peace
           </h1>
           <p className="text-lg md:text-xl text-primary-foreground/90 mb-10 max-w-2xl">
-            Discover BetterMe: Mental Health — Your personal guide to meditation, better sleep, and emotional wellness
+            Discover FitRun: Mental Health — Your personal guide to meditation, better sleep, and emotional wellness
           </p>
           <button className="rounded-full bg-card px-10 py-4 text-sm font-medium text-foreground transition-all duration-200 hover:bg-card/90 hover:scale-105">
             Download
@@ -406,7 +406,7 @@ const MentalHealth = () => {
             Start your wellness<br />journey today
           </h2>
           <p className="text-primary-foreground/80 mb-10 max-w-2xl mx-auto">
-            Join millions of people who have transformed their mental health with BetterMe. Your path to inner peace starts here.
+            Join millions of people who have transformed their mental health with FitRun. Your path to inner peace starts here.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="rounded-full bg-card px-10 py-4 text-sm font-medium text-foreground transition-all duration-200 hover:bg-card/90 hover:scale-105">
@@ -422,7 +422,7 @@ const MentalHealth = () => {
       {/* Disclaimer */}
       <div className="py-8 px-6 bg-background border-t border-border">
         <p className="text-xs text-muted-foreground text-center max-w-4xl mx-auto">
-          DISCLAIMER: BetterMe: Mental Health is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.
+          DISCLAIMER: FitRun: Mental Health is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.
         </p>
       </div>
 
@@ -432,7 +432,7 @@ const MentalHealth = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-6">
               <LocalizedLink to="/" className="text-xl font-bold text-foreground">
-                BetterMe
+                FitRun
               </LocalizedLink>
               <div className="flex items-center gap-4">
                 <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -448,7 +448,7 @@ const MentalHealth = () => {
             </div>
             
             <p className="text-sm text-muted-foreground">
-              © 2025 BetterMe. All Rights Reserved.
+              © 2025 FitRun. All Rights Reserved.
             </p>
           </div>
           
@@ -475,7 +475,7 @@ const MentalHealth = () => {
         <div className="relative z-10 h-full flex flex-col">
           <div className="flex items-center justify-between px-6 py-6 md:px-10 lg:px-12">
             <LocalizedLink to="/" className="text-xl md:text-2xl font-bold text-foreground" onClick={() => setIsMenuOpen(false)}>
-              BetterMe
+              FitRun
             </LocalizedLink>
             <button
               onClick={() => setIsMenuOpen(false)}
