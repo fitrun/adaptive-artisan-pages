@@ -100,7 +100,7 @@ const Blog = () => {
         <div className="flex items-center justify-between px-6 py-4 md:px-10 lg:px-12">
           <div className="flex items-center gap-4">
             <LocalizedLink to="/" className="text-xl md:text-2xl font-bold text-foreground">
-              BetterMe
+              FitRun
             </LocalizedLink>
             <span className="text-xl md:text-2xl font-light text-muted-foreground">Blog</span>
           </div>
@@ -237,10 +237,10 @@ const Blog = () => {
           {/* Bottom Section */}
           <div className="flex flex-wrap items-start justify-between gap-8 pt-8">
             <div className="max-w-md">
-              <p className="text-sm text-muted-foreground mb-2">© 2026. BetterMe</p>
+              <p className="text-sm text-muted-foreground mb-2">© 2026. FitRun</p>
               <p className="text-xs text-muted-foreground">
                 Our website services, content and products are for informational purposes only. 
-                BetterMe does not provide medical advice, diagnosis, or treatment
+                FitRun does not provide medical advice, diagnosis, or treatment
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-6">
@@ -268,7 +268,7 @@ const Blog = () => {
           <div className="flex items-center justify-between px-6 py-6 md:px-10 lg:px-12">
             <div className="flex items-center gap-4">
               <LocalizedLink to="/" className="text-xl md:text-2xl font-bold text-foreground" onClick={() => setIsMenuOpen(false)}>
-                BetterMe
+                FitRun
               </LocalizedLink>
               <span className="text-xl md:text-2xl font-light text-muted-foreground">Blog</span>
             </div>
