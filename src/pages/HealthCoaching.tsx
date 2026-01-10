@@ -8,7 +8,7 @@ import { PlaceholderLink } from "@/components/PlaceholderLink";
 
 const navLinks = [
   { label: "Products", href: "/products" },
-  { label: "For Business", href: "#" },
+  // { label: "For Business", href: "#" },
   { label: "Store", href: "#" },
   { label: "Privacy policy", href: "#" },
 ];
@@ -16,11 +16,10 @@ const navLinks = [
 const menuLinks = [
   { label: "Products", href: "/products" },
   { label: "Store", href: "#" },
-  { label: "About Us", href: "#" },
-  { label: "For Business", href: "#" },
+  // { label: "About Us", href: "#" },
   { label: "Blog", href: "#" },
-  { label: "Affiliate Program", href: "#" },
-  { label: "Careers", href: "#" },
+  // { label: "Affiliate Program", href: "#" },
+  // { label: "Careers", href: "#" },
   { label: "Contacts", href: "#" },
 ];
 
@@ -28,7 +27,7 @@ const footerLinks = [
   { label: "Terms of Use", href: "#" },
   { label: "Privacy policy", href: "#" },
   { label: "Editorial Process and Standards", href: "#" },
-  { label: "Master Service Agreement", href: "#" },
+  // { label: "Master Service Agreement", href: "#" },
   { label: "e-Privacy Settings", href: "#" },
 ];
 
