@@ -19,7 +19,7 @@ const Login = () => {
   return (
     <div className="min-h-screen w-full flex flex-col lg:flex-row">
       {/* Left Side - Image (Desktop/Tablet only) */}
-      <div className="hidden md:block md:w-1/2 relative bg-FitRun-light">
+      <div className="hidden md:block md:w-1/2 relative bg-betterme-light">
         {/* Logo */}
         <div className="absolute top-8 left-8 z-10">
           <LocalizedLink to="/" className="text-xl font-bold text-foreground">
@@ -70,7 +70,7 @@ const Login = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your Email"
-                  className="input-FitRun"
+                  className="input-betterme"
                   autoComplete="email"
                 />
               </div>
@@ -82,7 +82,7 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
-                  className="input-FitRun pr-20"
+                  className="input-betterme pr-20"
                   autoComplete="current-password"
                 />
                 <button
@@ -97,7 +97,7 @@ const Login = () => {
               {/* Forgot Password Link */}
               <div className="text-right">
                 <PlaceholderLink
-                  className="text-sm font-semibold text-FitRun-red hover:opacity-80 transition-opacity uppercase tracking-wide"
+                  className="text-sm font-semibold text-betterme-red hover:opacity-80 transition-opacity uppercase tracking-wide"
                 >
                   FORGOT YOUR PASSWORD?
                 </PlaceholderLink>
@@ -110,7 +110,7 @@ const Login = () => {
                 className={`w-full rounded-full py-4 text-sm font-semibold uppercase tracking-wide transition-all duration-200 ${
                   isFormValid
                     ? "bg-primary text-primary-foreground hover:opacity-90"
-                    : "bg-FitRun-button text-muted-foreground cursor-not-allowed"
+                    : "bg-betterme-button text-muted-foreground cursor-not-allowed"
                 }`}
               >
                 LOG IN
@@ -121,7 +121,7 @@ const Login = () => {
             <div className="mt-6 text-center">
               <span className="text-sm text-foreground">Don't have an account? </span>
               <PlaceholderLink
-                className="text-sm font-medium text-FitRun-red hover:opacity-80 transition-opacity"
+                className="text-sm font-medium text-betterme-red hover:opacity-80 transition-opacity"
               >
                 Create one now
               </PlaceholderLink>
