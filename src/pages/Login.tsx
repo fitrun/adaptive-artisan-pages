@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Eye, EyeOff, HelpCircle } from "lucide-react";
 import heroImage from "@/assets/hero-login.jpg";
 import { LocalizedLink } from "@/components/LocalizedLink";
+import { PlaceholderLink } from "@/components/PlaceholderLink";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -95,12 +96,11 @@ const Login = () => {
 
               {/* Forgot Password Link */}
               <div className="text-right">
-                <a
-                  href="#"
+                <PlaceholderLink
                   className="text-sm font-semibold text-betterme-red hover:opacity-80 transition-opacity uppercase tracking-wide"
                 >
                   FORGOT YOUR PASSWORD?
-                </a>
+                </PlaceholderLink>
               </div>
 
               {/* Submit Button */}
@@ -120,12 +120,11 @@ const Login = () => {
             {/* Sign Up Link */}
             <div className="mt-6 text-center">
               <span className="text-sm text-foreground">Don't have an account? </span>
-              <a
-                href="#"
+              <PlaceholderLink
                 className="text-sm font-medium text-betterme-red hover:opacity-80 transition-opacity"
               >
                 Create one now
-              </a>
+              </PlaceholderLink>
             </div>
           </div>
         </div>
@@ -135,24 +134,21 @@ const Login = () => {
           <div className="w-full max-w-md mx-auto md:max-w-none">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="flex flex-wrap gap-x-6 gap-y-2">
-                <a
-                  href="#"
+                <PlaceholderLink
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Terms of use
-                </a>
-                <a
-                  href="#"
+                </PlaceholderLink>
+                <PlaceholderLink
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Privacy policy
-                </a>
-                <a
-                  href="#"
+                </PlaceholderLink>
+                <PlaceholderLink
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   e-Privacy Settings
-                </a>
+                </PlaceholderLink>
               </div>
 
               {/* Help Button */}

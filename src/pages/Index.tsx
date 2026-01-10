@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import heroImage from "@/assets/hero-landing.jpg";
 import { LocalizedLink } from "@/components/LocalizedLink";
 import { useLanguage, SUPPORTED_LANGUAGES, Language } from "@/hooks/use-language";
+import { PlaceholderLink } from "@/components/PlaceholderLink";
 
 const navLinks = [
   { label: "Продукти", href: "/products" },
@@ -115,9 +116,9 @@ const Index = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a key={link.label} href={link.href} className="nav-link">
+              <PlaceholderLink key={link.label} className="nav-link">
                 {link.label}
-              </a>
+              </PlaceholderLink>
             ))}
           </div>
 
@@ -300,33 +301,28 @@ const Index = () => {
               <div className="px-8 py-8">
                 <div className="flex flex-wrap gap-x-6 gap-y-2">
                   {footerLinks.slice(0, 2).map((link) => (
-                    <a
+                    <PlaceholderLink
                       key={link.label}
-                      href={link.href}
                       className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
                     >
                       {link.label}
-                    </a>
+                    </PlaceholderLink>
                   ))}
                 </div>
                 <div className="flex flex-wrap gap-x-6 gap-y-2 mt-2">
                   {footerLinks.slice(2, 4).map((link) => (
-                    <a
+                    <PlaceholderLink
                       key={link.label}
-                      href={link.href}
                       className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
                     >
                       {link.label}
-                    </a>
+                    </PlaceholderLink>
                   ))}
                 </div>
                 <div className="flex items-center justify-between mt-2">
-                  <a
-                    href="#"
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
-                  >
+                  <PlaceholderLink className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200">
                     e-Privacy Settings
-                  </a>
+                  </PlaceholderLink>
                   
                   {/* Language Selector - Desktop Menu */}
                   <div 
@@ -418,13 +414,12 @@ const Index = () => {
             <div className="px-6 py-8">
               <div className="space-y-2">
                 {footerLinks.map((link) => (
-                  <a
+                  <PlaceholderLink
                     key={link.label}
-                    href={link.href}
                     className="block text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
                   >
                     {link.label}
-                  </a>
+                  </PlaceholderLink>
                 ))}
               </div>
               {/* Language Selector - Mobile Menu */}

@@ -4,6 +4,7 @@ import heroImage from "@/assets/hero-landing.jpg";
 import { AnimatedSection } from "@/hooks/use-scroll-animation";
 import { LocalizedLink } from "@/components/LocalizedLink";
 import { useLanguage, SUPPORTED_LANGUAGES, Language } from "@/hooks/use-language";
+import { PlaceholderLink } from "@/components/PlaceholderLink";
 
 const navLinks = [
   { label: "Продукти", href: "/products" },
@@ -490,14 +491,13 @@ const Products = () => {
             <div className="lg:col-span-1">
               <div className="flex gap-3 mb-6">
                 {["instagram", "tiktok", "facebook", "twitter", "linkedin"].map((social) => (
-                  <a
+                  <PlaceholderLink
                     key={social}
-                    href="#"
                     className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
                   >
                     <span className="sr-only">{social}</span>
                     <div className="w-4 h-4" />
-                  </a>
+                  </PlaceholderLink>
                 ))}
               </div>
               <p className="text-sm text-foreground mb-2">© 2026. FitRun.</p>
@@ -510,24 +510,24 @@ const Products = () => {
             {/* Links */}
             <div>
               <nav className="space-y-3">
-                <a href="#" className="block text-sm text-foreground hover:text-muted-foreground transition-colors">Products</a>
-                <a href="#" className="block text-sm text-foreground hover:text-muted-foreground transition-colors">For Business</a>
-                <a href="#" className="block text-sm text-foreground hover:text-muted-foreground transition-colors">Affiliate Program</a>
+                <PlaceholderLink className="block text-sm text-foreground hover:text-muted-foreground transition-colors">Products</PlaceholderLink>
+                <PlaceholderLink className="block text-sm text-foreground hover:text-muted-foreground transition-colors">For Business</PlaceholderLink>
+                <PlaceholderLink className="block text-sm text-foreground hover:text-muted-foreground transition-colors">Affiliate Program</PlaceholderLink>
               </nav>
             </div>
             
             <div>
               <nav className="space-y-3">
-                <a href="#" className="block text-sm text-foreground hover:text-muted-foreground transition-colors">About Us</a>
-                <a href="#" className="block text-sm text-foreground hover:text-muted-foreground transition-colors">Careers</a>
-                <a href="#" className="block text-sm text-foreground hover:text-muted-foreground transition-colors">Blog</a>
+                <PlaceholderLink className="block text-sm text-foreground hover:text-muted-foreground transition-colors">About Us</PlaceholderLink>
+                <PlaceholderLink className="block text-sm text-foreground hover:text-muted-foreground transition-colors">Careers</PlaceholderLink>
+                <PlaceholderLink className="block text-sm text-foreground hover:text-muted-foreground transition-colors">Blog</PlaceholderLink>
               </nav>
             </div>
             
             <div>
               <nav className="space-y-3">
-                <a href="#" className="block text-sm text-foreground hover:text-muted-foreground transition-colors">Contacts</a>
-                <a href="#" className="block text-sm text-foreground hover:text-muted-foreground transition-colors">Brand Assets</a>
+                <PlaceholderLink className="block text-sm text-foreground hover:text-muted-foreground transition-colors">Contacts</PlaceholderLink>
+                <PlaceholderLink className="block text-sm text-foreground hover:text-muted-foreground transition-colors">Brand Assets</PlaceholderLink>
               </nav>
             </div>
           </div>
@@ -535,15 +535,14 @@ const Products = () => {
           {/* Bottom Links */}
           <div className="border-t border-border pt-8">
             <div className="flex flex-wrap gap-x-6 gap-y-2">
-              <a href="#" className="text-sm font-medium text-foreground">Need Help?</a>
+              <PlaceholderLink className="text-sm font-medium text-foreground">Need Help?</PlaceholderLink>
               {footerLinks.map((link) => (
-                <a
+                <PlaceholderLink
                   key={link.label}
-                  href={link.href}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {link.label}
-                </a>
+                </PlaceholderLink>
               ))}
             </div>
           </div>
@@ -598,19 +597,18 @@ const Products = () => {
               <div className="px-8 py-8">
                 <div className="flex flex-wrap gap-x-6 gap-y-2">
                   {footerLinks.slice(0, 4).map((link) => (
-                    <a
+                    <PlaceholderLink
                       key={link.label}
-                      href={link.href}
                       className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
                     >
                       {link.label}
-                    </a>
+                    </PlaceholderLink>
                   ))}
                 </div>
                 <div className="flex items-center justify-between mt-4">
-                  <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200">
+                  <PlaceholderLink className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200">
                     e-Privacy Settings
-                  </a>
+                  </PlaceholderLink>
                   
                   {/* Language Selector - Desktop Menu */}
                   <div 
@@ -695,13 +693,12 @@ const Products = () => {
             <div className="px-6 py-8">
               <div className="space-y-2">
                 {footerLinks.map((link) => (
-                  <a
+                  <PlaceholderLink
                     key={link.label}
-                    href={link.href}
                     className="block text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
                   >
                     {link.label}
-                  </a>
+                  </PlaceholderLink>
                 ))}
               </div>
             </div>
