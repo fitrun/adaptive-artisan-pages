@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
-import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import heroImage from "@/assets/hero-landing.jpg";
+import { LocalizedLink } from "@/components/LocalizedLink";
+import { useLanguage, SUPPORTED_LANGUAGES, Language } from "@/hooks/use-language";
 
 const navLinks = [
   { label: "Продукти", href: "/products" },
@@ -54,21 +55,21 @@ const slides = [
 
 const AUTOPLAY_INTERVAL = 5000; // 5 seconds
 
-const languages = [
-  { code: "EN", label: "English" },
-  { code: "UA", label: "Українська" },
-  { code: "DE", label: "Deutsch" },
-  { code: "FR", label: "Français" },
-  { code: "ES", label: "Español" },
-];
+const languageLabels: Record<Language, string> = {
+  en: "EN",
+  ua: "UA",
+  de: "DE",
+  fr: "FR",
+  es: "ES",
+};
 
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [currentLang, setCurrentLang] = useState("EN");
   const [isLangHovered, setIsLangHovered] = useState(false);
   const [isMenuLangHovered, setIsMenuLangHovered] = useState(false);
+  const { lang, setLang } = useLanguage();
 
   const goToSlide = useCallback((index: number) => {
     if (isTransitioning || index === activeSlide) return;
@@ -107,9 +108,9 @@ const Index = () => {
       <header className="absolute top-0 left-0 right-0 z-20 px-6 py-6 md:px-10 lg:px-12">
         <nav className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="text-xl md:text-2xl font-bold text-primary-foreground">
+          <LocalizedLink to="" className="text-xl md:text-2xl font-bold text-primary-foreground">
             BetterMe
-          </Link>
+          </LocalizedLink>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
@@ -123,12 +124,12 @@ const Index = () => {
           {/* Right Side Actions */}
           <div className="flex items-center gap-3">
             {/* Login Button - Desktop/Tablet */}
-            <Link
-              to="/login"
+            <LocalizedLink
+              to="login"
               className="hidden md:flex items-center justify-center rounded-full border border-primary-foreground/30 bg-transparent px-8 py-3 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary-foreground/10"
             >
               Увійти
-            </Link>
+            </LocalizedLink>
 
             {/* Language Selector */}
             <div 
@@ -137,7 +138,7 @@ const Index = () => {
               onMouseLeave={() => setIsLangHovered(false)}
             >
               <button className="flex items-center justify-center text-sm font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-200 px-2 py-1">
-                {currentLang}
+                {languageLabels[lang]}
               </button>
               
               {/* Dropdown */}
@@ -154,12 +155,12 @@ const Index = () => {
                   
                   {/* Other languages */}
                   <div className="flex flex-col items-center gap-2">
-                    {languages
-                      .filter(lang => lang.code !== currentLang)
-                      .map((lang, index) => (
+                    {SUPPORTED_LANGUAGES
+                      .filter(l => l !== lang)
+                      .map((l, index) => (
                         <button
-                          key={lang.code}
-                          onClick={() => setCurrentLang(lang.code)}
+                          key={l}
+                          onClick={() => setLang(l)}
                           className={`text-sm font-medium text-primary-foreground/50 hover:text-primary-foreground transition-all duration-300 ${
                             isLangHovered 
                               ? "opacity-100 translate-y-0" 
@@ -167,7 +168,7 @@ const Index = () => {
                           }`}
                           style={{ transitionDelay: `${(index + 1) * 75}ms` }}
                         >
-                          {lang.code}
+                          {languageLabels[l]}
                         </button>
                       ))}
                   </div>
@@ -264,12 +265,12 @@ const Index = () => {
               {/* Header */}
               <div className="flex items-center justify-end gap-4 px-8 py-6">
                 <span className="text-sm text-muted-foreground">Потрібна допомога?</span>
-                <Link
-                  to="/login"
+                <LocalizedLink
+                  to="login"
                   className="rounded-full border border-border px-8 py-3 text-sm font-medium text-foreground transition-all duration-200 hover:bg-muted"
                 >
                   Увійти
-                </Link>
+                </LocalizedLink>
                 <button
                   onClick={() => setIsMenuOpen(false)}
                   className="flex h-12 w-12 items-center justify-center rounded-full border border-border text-foreground transition-all duration-200 hover:bg-muted"
@@ -333,12 +334,12 @@ const Index = () => {
                     onMouseEnter={() => setIsMenuLangHovered(true)}
                     onMouseLeave={() => setIsMenuLangHovered(false)}
                   >
-                    <button className="flex items-center justify-center text-sm font-medium text-foreground hover:text-muted-foreground transition-colors duration-200 px-2 py-1">
-                      {currentLang}
-                    </button>
-                    
-                    {/* Dropdown - expands upward */}
-                    <div className={`absolute bottom-full left-1/2 -translate-x-1/2 pb-2 transition-all duration-300 ${
+              <button className="flex items-center justify-center text-sm font-medium text-foreground hover:text-muted-foreground transition-colors duration-200 px-2 py-1">
+                    {languageLabels[lang]}
+                  </button>
+                  
+                  {/* Dropdown - expands upward */}
+                  <div className={`absolute bottom-full left-1/2 -translate-x-1/2 pb-2 transition-all duration-300 ${
                       isMenuLangHovered 
                         ? "opacity-100 translate-y-0 pointer-events-auto" 
                         : "opacity-0 translate-y-2 pointer-events-none"
@@ -346,20 +347,20 @@ const Index = () => {
                       <div className="flex flex-col items-center">
                         {/* Other languages */}
                         <div className="flex flex-col items-center gap-2 mb-3">
-                          {languages
-                            .filter(lang => lang.code !== currentLang)
-                            .map((lang, index) => (
+                          {SUPPORTED_LANGUAGES
+                            .filter(l => l !== lang)
+                            .map((l, index) => (
                               <button
-                                key={lang.code}
-                                onClick={() => setCurrentLang(lang.code)}
+                                key={l}
+                                onClick={() => setLang(l)}
                                 className={`text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 ${
                                   isMenuLangHovered 
                                     ? "opacity-100 translate-y-0" 
                                     : "opacity-0 translate-y-2"
                                 }`}
-                                style={{ transitionDelay: `${(languages.length - 2 - index) * 50}ms` }}
+                                style={{ transitionDelay: `${(SUPPORTED_LANGUAGES.length - 2 - index) * 50}ms` }}
                               >
-                                {lang.code}
+                                {languageLabels[l]}
                               </button>
                             ))}
                         </div>
@@ -382,12 +383,12 @@ const Index = () => {
             <div className="flex items-center justify-between px-6 py-6">
               <span className="text-sm text-muted-foreground">Потрібна допомога?</span>
               <div className="flex items-center gap-3">
-                <Link
-                  to="/login"
+                <LocalizedLink
+                  to="login"
                   className="rounded-full border border-border px-6 py-2.5 text-sm font-medium text-foreground transition-all duration-200 hover:bg-muted"
                 >
                   Увійти
-                </Link>
+                </LocalizedLink>
                 <button
                   onClick={() => setIsMenuOpen(false)}
                   className="flex h-12 w-12 items-center justify-center rounded-full border border-border text-foreground transition-all duration-200 hover:bg-muted"
@@ -434,7 +435,7 @@ const Index = () => {
                   onMouseLeave={() => setIsMenuLangHovered(false)}
                 >
                   <button className="flex items-center justify-center text-sm font-medium text-foreground hover:text-muted-foreground transition-colors duration-200 px-2 py-1">
-                    {currentLang}
+                    {languageLabels[lang]}
                   </button>
                   
                   {/* Dropdown - expands upward */}
@@ -446,20 +447,20 @@ const Index = () => {
                     <div className="flex flex-col items-center">
                       {/* Other languages */}
                       <div className="flex flex-col items-center gap-2 mb-3">
-                        {languages
-                          .filter(lang => lang.code !== currentLang)
-                          .map((lang, index) => (
+                        {SUPPORTED_LANGUAGES
+                          .filter(l => l !== lang)
+                          .map((l, index) => (
                             <button
-                              key={lang.code}
-                              onClick={() => setCurrentLang(lang.code)}
+                              key={l}
+                              onClick={() => setLang(l)}
                               className={`text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 ${
                                 isMenuLangHovered 
                                   ? "opacity-100 translate-y-0" 
                                   : "opacity-0 translate-y-2"
                               }`}
-                              style={{ transitionDelay: `${(languages.length - 2 - index) * 50}ms` }}
+                              style={{ transitionDelay: `${(SUPPORTED_LANGUAGES.length - 2 - index) * 50}ms` }}
                             >
-                              {lang.code}
+                              {languageLabels[l]}
                             </button>
                           ))}
                       </div>
