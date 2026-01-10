@@ -326,9 +326,12 @@ const Products = () => {
                 <button className="rounded-full bg-card px-10 py-4 text-sm font-medium text-foreground transition-all duration-200 hover:bg-card/90 hover:scale-105">
                   Download
                 </button>
-                <button className="rounded-full border border-primary-foreground/50 bg-transparent px-10 py-4 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary-foreground/10">
+                <Link 
+                  to="/products/mental-health"
+                  className="rounded-full border border-primary-foreground/50 bg-transparent px-10 py-4 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary-foreground/10"
+                >
                   Learn More
-                </button>
+                </Link>
               </div>
             </div>
           </div>

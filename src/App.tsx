@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Products from "./pages/Products";
 import HealthCoaching from "./pages/HealthCoaching";
+import MentalHealth from "./pages/MentalHealth";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const AnimatedRoutes = () => {
         <Route path="/login" element={<PageTransition><Login /></PageTransition>} />
         <Route path="/products" element={<PageTransition><Products /></PageTransition>} />
         <Route path="/products/health-coaching" element={<PageTransition><HealthCoaching /></PageTransition>} />
+        <Route path="/products/mental-health" element={<PageTransition><MentalHealth /></PageTransition>} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
