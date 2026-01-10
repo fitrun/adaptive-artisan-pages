@@ -57,6 +57,9 @@ const AUTOPLAY_INTERVAL = 5000; // 5 seconds
 const languages = [
   { code: "EN", label: "English" },
   { code: "UA", label: "Українська" },
+  { code: "DE", label: "Deutsch" },
+  { code: "FR", label: "Français" },
+  { code: "ES", label: "Español" },
 ];
 
 const Index = () => {
@@ -65,6 +68,7 @@ const Index = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [currentLang, setCurrentLang] = useState("EN");
   const [isLangHovered, setIsLangHovered] = useState(false);
+  const [isMenuLangHovered, setIsMenuLangHovered] = useState(false);
 
   const goToSlide = useCallback((index: number) => {
     if (isTransitioning || index === activeSlide) return;
@@ -322,7 +326,51 @@ const Index = () => {
                   >
                     e-Privacy Settings
                   </a>
-                  <span className="text-sm font-medium text-foreground">UA</span>
+                  
+                  {/* Language Selector - Desktop Menu */}
+                  <div 
+                    className="relative"
+                    onMouseEnter={() => setIsMenuLangHovered(true)}
+                    onMouseLeave={() => setIsMenuLangHovered(false)}
+                  >
+                    <button className="flex items-center justify-center text-sm font-medium text-foreground hover:text-muted-foreground transition-colors duration-200 px-2 py-1">
+                      {currentLang}
+                    </button>
+                    
+                    {/* Dropdown - expands upward */}
+                    <div className={`absolute bottom-full left-1/2 -translate-x-1/2 pb-2 transition-all duration-300 ${
+                      isMenuLangHovered 
+                        ? "opacity-100 translate-y-0 pointer-events-auto" 
+                        : "opacity-0 translate-y-2 pointer-events-none"
+                    }`}>
+                      <div className="flex flex-col items-center">
+                        {/* Other languages */}
+                        <div className="flex flex-col items-center gap-2 mb-3">
+                          {languages
+                            .filter(lang => lang.code !== currentLang)
+                            .map((lang, index) => (
+                              <button
+                                key={lang.code}
+                                onClick={() => setCurrentLang(lang.code)}
+                                className={`text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 ${
+                                  isMenuLangHovered 
+                                    ? "opacity-100 translate-y-0" 
+                                    : "opacity-0 translate-y-2"
+                                }`}
+                                style={{ transitionDelay: `${(languages.length - 2 - index) * 50}ms` }}
+                              >
+                                {lang.code}
+                              </button>
+                            ))}
+                        </div>
+                        
+                        {/* Divider line */}
+                        <div className={`w-5 h-px bg-border transition-all duration-300 delay-100 ${
+                          isMenuLangHovered ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
+                        }`} />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -378,8 +426,51 @@ const Index = () => {
                   </a>
                 ))}
               </div>
+              {/* Language Selector - Mobile Menu */}
               <div className="flex justify-end mt-4">
-                <span className="text-sm font-medium text-foreground">UA</span>
+                <div 
+                  className="relative"
+                  onMouseEnter={() => setIsMenuLangHovered(true)}
+                  onMouseLeave={() => setIsMenuLangHovered(false)}
+                >
+                  <button className="flex items-center justify-center text-sm font-medium text-foreground hover:text-muted-foreground transition-colors duration-200 px-2 py-1">
+                    {currentLang}
+                  </button>
+                  
+                  {/* Dropdown - expands upward */}
+                  <div className={`absolute bottom-full left-1/2 -translate-x-1/2 pb-2 transition-all duration-300 ${
+                    isMenuLangHovered 
+                      ? "opacity-100 translate-y-0 pointer-events-auto" 
+                      : "opacity-0 translate-y-2 pointer-events-none"
+                  }`}>
+                    <div className="flex flex-col items-center">
+                      {/* Other languages */}
+                      <div className="flex flex-col items-center gap-2 mb-3">
+                        {languages
+                          .filter(lang => lang.code !== currentLang)
+                          .map((lang, index) => (
+                            <button
+                              key={lang.code}
+                              onClick={() => setCurrentLang(lang.code)}
+                              className={`text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 ${
+                                isMenuLangHovered 
+                                  ? "opacity-100 translate-y-0" 
+                                  : "opacity-0 translate-y-2"
+                              }`}
+                              style={{ transitionDelay: `${(languages.length - 2 - index) * 50}ms` }}
+                            >
+                              {lang.code}
+                            </button>
+                          ))}
+                      </div>
+                      
+                      {/* Divider line */}
+                      <div className={`w-5 h-px bg-border transition-all duration-300 delay-100 ${
+                        isMenuLangHovered ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
+                      }`} />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
