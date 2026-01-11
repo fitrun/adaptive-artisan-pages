@@ -17,29 +17,31 @@ const Login = () => {
   const isFormValid = email.length > 0 && password.length > 0;
 
   return (
-    <div className="min-h-screen w-full flex flex-col lg:flex-row">
+    <div className="min-h-screen w-full flex flex-col lg:flex-row bg-card">
       {/* Left Side - Image (Desktop/Tablet only) */}
-      <div className="hidden md:block md:w-1/2 relative bg-betterme-light">
-        {/* Logo */}
-        <div className="absolute top-8 left-8 z-10">
-          <LocalizedLink to="/" className="text-xl font-bold text-foreground">
-            FitRun
-          </LocalizedLink>
-        </div>
-
-        {/* Hero Image with Watermark */}
-        <div className="relative h-full flex items-center justify-center overflow-hidden">
-          <img
-            src={heroImage}
-            alt="Fitness pose"
-            className="w-full h-full object-cover object-center"
-          />
-          
-          {/* Large Watermark Text */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <span className="text-[12vw] font-bold text-card/30 whitespace-nowrap select-none">
+      <div className="hidden md:block md:w-1/2 relative p-4 pr-0">
+        <div className="relative h-full w-full rounded-3xl overflow-hidden bg-betterme-light">
+          {/* Logo */}
+          <div className="absolute top-6 left-6 z-10">
+            <LocalizedLink to="/" className="text-xl font-bold text-foreground">
               FitRun
-            </span>
+            </LocalizedLink>
+          </div>
+
+          {/* Hero Image with Watermark */}
+          <div className="relative h-full flex items-center justify-center overflow-hidden">
+            <img
+              src={heroImage}
+              alt="Fitness pose"
+              className="w-full h-full object-cover object-center"
+            />
+            
+            {/* Large Watermark Text */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <span className="text-[12vw] font-bold text-card/30 whitespace-nowrap select-none">
+                FitRun
+              </span>
+            </div>
           </div>
         </div>
       </div>
