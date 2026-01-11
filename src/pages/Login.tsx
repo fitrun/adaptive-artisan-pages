@@ -201,7 +201,7 @@ const Login = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.4 }}
             >
-              <span className="text-sm text-foreground">Don't have an account? </span>
+              {/* <span className="text-sm text-foreground">Don't have an account? </span> */}
               <PlaceholderLink
                 className="text-sm font-medium text-betterme-red hover:opacity-80 transition-opacity"
               >
