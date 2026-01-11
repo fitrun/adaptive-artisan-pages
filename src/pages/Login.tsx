@@ -44,13 +44,10 @@ const Login = () => {
           </div>
 
           {/* Hero Image with Watermark */}
-          <div className="relative h-full flex items-center justify-center overflow-hidden">
-            <img
-              src={heroImage}
-              alt="Fitness pose"
-              className="w-full h-full object-cover object-center"
-            />
-            
+          <div
+            className="relative h-full w-full overflow-hidden bg-cover bg-center"
+            style={{ backgroundImage: `url(${heroImage})` }}
+          >
             {/* Large Watermark Text */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <span className="text-[12vw] font-bold text-card/30 whitespace-nowrap select-none">
