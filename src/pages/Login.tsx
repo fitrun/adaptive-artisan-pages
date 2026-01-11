@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { HelpCircle, Mail, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
-import heroImage from "@/assets/hero-login.jpg";
+import heroImage from "@/1.jpg";
 import { LocalizedLink } from "@/components/LocalizedLink";
 import { PlaceholderLink } from "@/components/PlaceholderLink";
 
