@@ -50,7 +50,7 @@ const Login = () => {
           >
             {/* Large Watermark Text */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <span className="text-[12vw] font-bold text-card/30 whitespace-nowrap select-none">
+              <span className="text-[12vw] font-bold text-card/30 whitespace-nowrap select-none italic">
                 FitRun
               </span>
             </div>
