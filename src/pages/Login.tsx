@@ -74,7 +74,7 @@ const Login = () => {
         {/* Form Container */}
         <div className="flex-1 flex flex-col justify-center px-6 py-8 md:px-12 lg:px-16 xl:px-24">
           <motion.div 
-            className="w-full max-w-md mx-auto"
+            className="w-full max-w-sm mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
