@@ -36,7 +36,7 @@ const Login = () => {
           <div className="absolute top-6 left-6 z-10">
             <LocalizedLink to="/" className="flex items-center">
               <img
-                src="/fitrun_logo_dark.png"
+                src="/fitrun_logo_white.png"
                 alt="FitRun"
                 className="h-8 w-auto"
               />
