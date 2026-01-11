@@ -195,19 +195,19 @@ const Login = () => {
             )}
 
             {/* Sign Up Link */}
-            <motion.div 
+            {/* <motion.div 
               className="mt-6 text-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.4 }}
             >
-              {/* <span className="text-sm text-foreground">Don't have an account? </span> */}
+              <span className="text-sm text-foreground">Don't have an account? </span>
               <PlaceholderLink
                 className="text-sm font-medium text-betterme-red hover:opacity-80 transition-opacity"
               >
                 Create one now
               </PlaceholderLink>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         </div>
 
