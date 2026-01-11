@@ -109,7 +109,7 @@ const Index = () => {
           {/* Logo */}
           <LocalizedLink to="" className="flex items-center">
             <img
-              src="/fitrun_logo_white.png"
+              src="/fitrun_logo.png"
               alt="FitRun"
               className="h-8 md:h-10 w-auto"
             />
