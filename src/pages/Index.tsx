@@ -107,8 +107,12 @@ const Index = () => {
       <header className="absolute top-0 left-0 right-0 z-20 px-6 py-6 md:px-10 lg:px-12">
         <nav className="flex items-center justify-between">
           {/* Logo */}
-          <LocalizedLink to="" className="text-xl md:text-2xl font-bold text-primary-foreground">
-            FitRun
+          <LocalizedLink to="" className="flex items-center">
+            <img
+              src="/fitrun_logo_white.png"
+              alt="FitRun"
+              className="h-8 md:h-10 w-auto"
+            />
           </LocalizedLink>
 
           {/* Desktop Navigation */}
