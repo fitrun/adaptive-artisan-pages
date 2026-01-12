@@ -91,7 +91,7 @@ const Index = () => {
   }, [nextSlide, isMenuOpen]);
 
   return (
-    <div className="relative min-h-screen min-h-[400dvh] w-full overflow-hidden">
+    <div className="relative min-h-[100dvh] w-full overflow-hidden">
       {/* Background Images with Transition */}
       {slides.map((slide, index) => (
         <div
